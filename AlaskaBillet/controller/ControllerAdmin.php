@@ -1,11 +1,12 @@
 <?php
 require_once('controller/ControllerBase.php');
 
+
+//Faire lien vers controllerarticle
 class ControllerAdmin extends ControllerBase
 {
   private $_admin;
-
-
+  
   public function __construct()
   {
     $this->Loadconfig();
@@ -47,8 +48,6 @@ class ControllerAdmin extends ControllerBase
   }
 
   public function IsLogged(){
-    // $this->_articleManager = new ArticleManager;
-    // $this->ArticleManager->getArticles();
     $this->_view = new View('AdminOk');
     $this->_view->generate(array());
   }

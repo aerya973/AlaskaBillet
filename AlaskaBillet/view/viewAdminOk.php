@@ -14,6 +14,6 @@
     <label>Image:</label>
   </div>
   <div>
-    <a></span> Retour</a>
+    <a></span>Retour</a>
   </div>
 </div>

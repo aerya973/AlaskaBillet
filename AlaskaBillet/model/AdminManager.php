@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class AdminManager extends ModelManager
 {
   public function isAdmin($user, $pass)
@@ -12,6 +12,8 @@ class AdminManager extends ModelManager
 
     if($res != false)
     {
+      session_start();
+      $_SESSION['user'] = 'admin';
       return new Admin($res);
     }
     else
