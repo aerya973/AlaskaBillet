@@ -1,9 +1,14 @@
 <?php
-
 class ArticleManager extends ModelManager
 {
-  static function getArticles()
+  public function getArticles()
   {
     return $this->getAll('articles', 'Article');
   }
+
+  //ADD POST return $this->add();
+
+  //EDIT POST return $this->edit();
+
+  //DELETE POST return $this->delete();
 }

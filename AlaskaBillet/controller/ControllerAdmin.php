@@ -1,12 +1,12 @@
 <?php
+session_start();
 require_once('controller/ControllerBase.php');
-
 
 //Faire lien vers controllerarticle
 class ControllerAdmin extends ControllerBase
 {
   private $_admin;
-  
+
   public function __construct()
   {
     $this->Loadconfig();
@@ -31,10 +31,11 @@ class ControllerAdmin extends ControllerBase
       $user = $_POST['user_name'];
       $pass = $_POST['user_pass'];
       $admin = $this->_adminManager->isAdmin($user, $pass);
-
+      var_dump($admin);
       if ($admin != false)
       {
-        $this->IsLogged();
+        $_SESSION['user'] = $admin;
+        header('location: '.$this->_config->rootPath.'Admin/ShowArticles');
       }
       else
       {
@@ -47,8 +48,18 @@ class ControllerAdmin extends ControllerBase
     }
   }
 
-  public function IsLogged(){
-    $this->_view = new View('AdminOk');
-    $this->_view->generate(array());
+  public function ShowArticles(){
+    if(isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null)
+    {
+      $this->_articleManager = new ArticleManager;
+      $listeArticle = $this->_articleManager->getArticles();
+      $this->_view = new View('AdminOk');
+      $this->_view->generate(array('listeArticle' => $listeArticle, 'imgPath' => $this->_config->rootPath.'assets/'));
+    } else
+    {
+      header('location: '.$this->_config->rootPath.'Admin/Admin');
+
+    }
+
   }
 }

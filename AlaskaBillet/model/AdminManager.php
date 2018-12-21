@@ -12,8 +12,6 @@ class AdminManager extends ModelManager
 
     if($res != false)
     {
-      session_start();
-      $_SESSION['user'] = 'admin';
       return new Admin($res);
     }
     else

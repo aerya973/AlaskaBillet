@@ -13,8 +13,9 @@ abstract class ModelManager
     if(self::$_bdd == null)
     {
     self::setBdd();
-    return self::$_bdd;
     }
+    return self::$_bdd;
+
   }
 
   protected function getAll($table, $obj)
@@ -29,4 +30,10 @@ abstract class ModelManager
     return $var;
     $req->closeCursor();
   }
+
+  //add
+
+  //edit
+
+  //delete
 }

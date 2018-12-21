@@ -20,4 +20,9 @@ class Admin extends Model
       $this->user_name = $user_name;
     }
   }
+
+  public function getId()
+  {
+    return $this->id;
+  }
 }
