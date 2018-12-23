@@ -1,14 +1,20 @@
 <?php
 class ArticleManager extends ModelManager
 {
-  public function getArticles()
+
+  public function __construct()
   {
-    return $this->getAll('articles', 'Article');
+    $this->_table = 'articles';
+    $this->_obj = 'Article';
+  }
+
+  public function editArticle()
+  {
+    return $this->edit();
   }
 
   //ADD POST return $this->add();
 
-  //EDIT POST return $this->edit();
 
   //DELETE POST return $this->delete();
 }

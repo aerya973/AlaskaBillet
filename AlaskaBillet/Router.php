@@ -19,7 +19,7 @@ class Router
       $url= '';
       //CONTROLLER INCLUT SELON L'ACTION DE L'UTILISATEUR
       if(isset($_GET['url']))
-      {
+      {      
         $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
         $controller = ucfirst(mb_strtolower($url[0]));
         $action = ucfirst(mb_strtolower($url[1]));

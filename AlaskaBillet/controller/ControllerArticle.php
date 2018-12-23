@@ -13,7 +13,7 @@ class ControllerArticle extends ControllerBase
 
   public function Articles(){
     $this->_articleManager = new ArticleManager;
-    $articles = $this->_articleManager->getArticles();
+    $articles = $this->_articleManager->getAll();
     $this->_view = new View('Article');
     $this->_view->generate(array('articles' => $articles , 'imgPath' => $this->_config->rootPath.'assets/'));
   }

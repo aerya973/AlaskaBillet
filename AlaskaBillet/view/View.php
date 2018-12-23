@@ -25,7 +25,9 @@ class View
     {
       extract($data);
 
+
       ob_start();
+      $config = new Config();
       //INCLUT LE FICHIER VUE
       require $file;
 

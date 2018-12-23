@@ -7,6 +7,7 @@ class ControllerAdmin extends ControllerBase
 {
   private $_admin;
 
+
   public function __construct()
   {
     $this->Loadconfig();
@@ -49,17 +50,35 @@ class ControllerAdmin extends ControllerBase
   }
 
   public function ShowArticles(){
-    if(isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null)
+  if($this->verifyAdmin())
     {
       $this->_articleManager = new ArticleManager;
-      $listeArticle = $this->_articleManager->getArticles();
+      $listeArticle = $this->_articleManager->getAll();
       $this->_view = new View('AdminOk');
       $this->_view->generate(array('listeArticle' => $listeArticle, 'imgPath' => $this->_config->rootPath.'assets/'));
     } else
     {
       header('location: '.$this->_config->rootPath.'Admin/Admin');
-
     }
+  }
 
+  public function ShowArticle($param)
+  {
+
+    if($this->verifyAdmin())
+    {
+      $this->_articleManager = new ArticleManager;
+      $oneArticle = $this->_articleManager->getOne($param['id']);
+      $this->_view = new View('Edit');
+      $this->_view->generate(array('oneArticle' => $oneArticle, 'imgPath' => $this->_config->rootPath.'assets/'));
+    } else
+    {
+      header('location: '.$this->_config->rootPath.'Admin/Admin');
+    }
+  }
+
+  public function verifyAdmin()
+  {
+    return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
   }
 }
