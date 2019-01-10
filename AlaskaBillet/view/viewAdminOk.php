@@ -1,3 +1,6 @@
+<div class="addArticle">
+<a href="ShowAdd">Ajouter un article</a>
+</div>
 <div style="overflow-x:auto;">
   <table>
     <thead>

@@ -32,7 +32,7 @@ class ControllerAdmin extends ControllerBase
       $user = $_POST['user_name'];
       $pass = $_POST['user_pass'];
       $admin = $this->_adminManager->isAdmin($user, $pass);
-      var_dump($admin);
+
       if ($admin != false)
       {
         $_SESSION['user'] = $admin;
@@ -76,6 +76,45 @@ class ControllerAdmin extends ControllerBase
       header('location: '.$this->_config->rootPath.'Admin/Admin');
     }
   }
+
+
+  public function ShowEdit($param)
+  {
+    if($this->verifyAdmin())
+    {
+      var_dump($param);
+      if(isset($param['editSubmit'])) //$param[''] plutot que POST
+      {
+        if(isset($param['title'], $param['content'], $param['img']))
+        {
+          $id = $param['id'];
+          $title = $param['title'];
+          $content = $param['content'];
+          $image = $param['img'];
+          $this->_articleManager = new ArticleManager;
+          if($this->_articleManager->edit($param['id'], $title, $content, $image))
+          {
+            echo "Mise a jour effectuee";
+          } else
+          {
+            echo "erreur";
+          }
+        }
+      }
+    $this->_view = new View('Success');
+    $this->_view->generate(array());
+    } else
+    {
+      header('location: '.$this->_config->rootPath.'Admin/Admin');
+    }
+  }
+
+  public function ShowAdd()
+  {
+    $this->_view = new View('Add');
+    $this->_view->generate(array());
+  }
+
 
   public function verifyAdmin()
   {

@@ -13,13 +13,19 @@ class Router
 
       //CHARGEMENT AUTOMATIQUE DES CLASSES
       spl_autoload_register(function($class){
-        require_once('model/'.$class.'.php');
+        if(file_exists('model/'.$class.'.php'))
+        {
+          require_once('model/'.$class.'.php');
+        } else if(file_exists($class.'.php'))
+        {
+          require_once($class.'.php');
+        }
       });
 
       $url= '';
       //CONTROLLER INCLUT SELON L'ACTION DE L'UTILISATEUR
       if(isset($_GET['url']))
-      {      
+      {
         $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
         $controller = ucfirst(mb_strtolower($url[0]));
         $action = ucfirst(mb_strtolower($url[1]));

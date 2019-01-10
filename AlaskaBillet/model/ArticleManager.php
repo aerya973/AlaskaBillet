@@ -8,10 +8,18 @@ class ArticleManager extends ModelManager
     $this->_obj = 'Article';
   }
 
-  public function editArticle()
+  public function edit($id, $title, $content, $img)
   {
-    return $this->edit();
+    $req = $this->getBdd()->prepare('UPDATE '.$this->_table.' SET title = ? , content =  ?, img = ? WHERE id = ?');
+    $req->execute(array($title, $content, $img, $id));
+    var_dump($req);
+
   }
+  //
+  // public function editArticle()
+  // {
+  //   return $this->edit();
+  // }
 
   //ADD POST return $this->add();
 

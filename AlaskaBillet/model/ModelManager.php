@@ -40,8 +40,9 @@ abstract class ModelManager
     return new $this->_obj($data);
   }
 
-  protected function edit()
+  public function add()
   {
-      //UPDATE
+    $req= $this->getBdd()->prepare('INSERT INTO '.$this->_table.'(title, content, img) VALUES ($title, $content, $img )');
+
   }
 }
