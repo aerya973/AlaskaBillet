@@ -111,8 +111,46 @@ class ControllerAdmin extends ControllerBase
 
   public function ShowAdd()
   {
+    if($this->verifyAdmin())
+    {
     $this->_view = new View('Add');
     $this->_view->generate(array());
+    } else
+    {
+      header('location: '.$this->_config->rootPath.'Admin/Admin');
+    }
+  }
+
+  public function AddArticle($param)
+  {
+    if($this->verifyAdmin())
+    {
+      var_dump($param);
+      if(isset($param['addSubmit'])) //$param[''] plutot que POST
+      {
+        if(isset($param['title'], $param['content'], $param['date'], $param['img']))
+        {
+
+          $title = $param['title'];
+          $content = $param['content'];
+          $date = $param['date'];
+          $image = $param['img'];
+          $this->_articleManager = new ArticleManager;
+          if($this->_articleManager->add($title, $content, $date, $image))
+          {
+            echo "Mise a jour effectuee";
+          } else
+          {
+            echo "erreur";
+          }
+        }
+      }
+    $this->_view = new View('Success');
+    $this->_view->generate(array());
+    } else
+    {
+      header('location: '.$this->_config->rootPath.'Admin/Admin');
+    }
   }
 
 

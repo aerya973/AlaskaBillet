@@ -39,10 +39,4 @@ abstract class ModelManager
     $data = $req->fetch(PDO::FETCH_ASSOC);
     return new $this->_obj($data);
   }
-
-  public function add()
-  {
-    $req= $this->getBdd()->prepare('INSERT INTO '.$this->_table.'(title, content, img) VALUES ($title, $content, $img )');
-
-  }
 }
