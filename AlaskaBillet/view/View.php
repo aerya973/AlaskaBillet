@@ -1,4 +1,5 @@
 <?php
+require_once('Framework/HtmlHelper.php');
 class View
 {
   private $_file;

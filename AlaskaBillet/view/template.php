@@ -11,6 +11,6 @@
     <footer>
       <?php require 'include/footer.php' ?>
     </footer>
-
+    <script src="<?= $config->rootPath; ?>/assets/modal.js"></script>
   </body>
 </html>

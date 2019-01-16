@@ -15,9 +15,6 @@
       <label for="title">Image:</label><br />
       <input type="image" name="img" value="<?= $oneArticle->getImg(); ?>"/>
       <input type="file" name="img" accept="image/*">
-      <!-- Mettre valeurpar default image -->
-      <!-- Redirection vers articles ou vers page modif -->
-      <!-- Composant framework sauf htaccess  -->
     </div>
     <button type="submit" name="editSubmit">Modifier</button>
   </form>

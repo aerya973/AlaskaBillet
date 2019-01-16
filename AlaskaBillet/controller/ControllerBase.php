@@ -1,6 +1,6 @@
 <?php
 require_once('view/View.php');
-require_once('Config.php');
+require_once('Framework/Config.php');
 // Modele pour les controllers
 class ControllerBase {
   protected $_view;

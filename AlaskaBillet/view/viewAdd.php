@@ -1,7 +1,7 @@
 <div class="containerForm">
   <h4>Ajouter un Article</h4>
   <form action="<?= HtmlHelper::getAction('AddArticle', 'Admin') ?>" method="post">
-    <input type="hidden" name="date"/>
+    <input type="hidden" name="date">
     <div>
       <label for="title">Titre:</label><br />
       <input type="text" name="title"/>

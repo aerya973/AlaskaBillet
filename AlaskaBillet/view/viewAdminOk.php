@@ -19,8 +19,24 @@
           <td><?= $article->getContent(); ?></td>
           <td><?= $article->getDate(); ?></td>
           <td><img src="<?= $imgPath.$article->getImg(); ?>" /></td>
-          <td><a href="ShowArticle/<?= $article->getId(); ?>">Editer</a></td>
+          <td>
+            <button><a href="ShowArticle/<?= $article->getId(); ?>">Editer</a></button>
+          <button id="myBtn">Supprimer</button>
+          </td>
         </tr>
+
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <form action="<?= HtmlHelper::getAction('deleteArticle', 'Admin') ?>" method="post">
+              <input type="hidden" name="id" value="<?= $article->getId(); ?>"></input>
+              <p>Voulez-vous supprimer cet article ? </p>
+              <button name="deletePost">supprimer</button>
+            </form>
+          </div>
+        </div>
+
+
         <?php endforeach; ?>
     </tbody>
   </table>

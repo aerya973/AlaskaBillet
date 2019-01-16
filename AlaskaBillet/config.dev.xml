@@ -4,4 +4,5 @@
     <userName>root</userName>
     <password>Coucou les Amis Dev!695.</password>
   </dataBase>
+  <environnement>dev</environnement>
 </config>

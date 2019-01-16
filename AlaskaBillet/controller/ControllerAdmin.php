@@ -12,7 +12,7 @@ class ControllerAdmin extends ControllerBase
   {
     $this->Loadconfig();
   }
-
+//AUTENTIFICATION/////////////////////////////////////////////////
   public function Admin(){
     $this->_view = new View('Admin');
     $this->_view->generate(array());
@@ -49,6 +49,9 @@ class ControllerAdmin extends ControllerBase
     }
   }
 
+//CRUD GESTION /////////////////////////////////////////////////
+
+//ADMINISTRATION PAGE
   public function ShowArticles(){
   if($this->verifyAdmin())
     {
@@ -62,9 +65,9 @@ class ControllerAdmin extends ControllerBase
     }
   }
 
+// GET ONE POST
   public function ShowArticle($param)
   {
-
     if($this->verifyAdmin())
     {
       $this->_articleManager = new ArticleManager;
@@ -77,12 +80,11 @@ class ControllerAdmin extends ControllerBase
     }
   }
 
-
+// CONTROL FORM AND REQUEST EDIT
   public function ShowEdit($param)
   {
     if($this->verifyAdmin())
     {
-      var_dump($param);
       if(isset($param['editSubmit'])) //$param[''] plutot que POST
       {
         if(isset($param['title'], $param['content'], $param['img']))
@@ -101,8 +103,7 @@ class ControllerAdmin extends ControllerBase
           }
         }
       }
-    $this->_view = new View('Success');
-    $this->_view->generate(array());
+      $this->ShowArticles();
     } else
     {
       header('location: '.$this->_config->rootPath.'Admin/Admin');
@@ -123,20 +124,20 @@ class ControllerAdmin extends ControllerBase
 
   public function AddArticle($param)
   {
+    
     if($this->verifyAdmin())
     {
       var_dump($param);
-      if(isset($param['addSubmit'])) //$param[''] plutot que POST
+      if(isset($param['addSubmit']))
       {
-        if(isset($param['title'], $param['content'], $param['date'], $param['img']))
+        if(isset($param['title'], $param['content'], $param['img']))
         {
 
           $title = $param['title'];
           $content = $param['content'];
-          $date = $param['date'];
           $image = $param['img'];
           $this->_articleManager = new ArticleManager;
-          if($this->_articleManager->add($title, $content, $date, $image))
+          if($this->_articleManager->add($title, $content, $image))
           {
             echo "Mise a jour effectuee";
           } else
@@ -145,8 +146,30 @@ class ControllerAdmin extends ControllerBase
           }
         }
       }
-    $this->_view = new View('Success');
-    $this->_view->generate(array());
+    $this->ShowArticles();
+    } else
+    {
+      header('location: '.$this->_config->rootPath.'Admin/Admin');
+    }
+  }
+
+
+  public function deleteArticle($param)
+  {
+    if($this->verifyAdmin())
+    {
+      if(isset($param['deletePost']))
+      {
+          $this->_articleManager = new ArticleManager;
+          if($this->_articleManager->delete($param['id']))
+          {
+            echo "Mise a jour effectuee";
+          } else
+          {
+            echo "erreur";
+          }
+        }
+        $this->ShowArticles();
     } else
     {
       header('location: '.$this->_config->rootPath.'Admin/Admin');
