@@ -4,16 +4,16 @@
     <input type="hidden" name="date"/>
     <div>
       <label for="title">Titre:</label><br />
-      <input type="text" name="title"/>
+      <input type="text" name="title" id="title"/>
     </div>
     <div>
       <label for="content">Contenu:</label><br />
-      <input type="text" name="content"/>
+      <input type="text" name="content" id="content"/>
     </div>
     <div>
       <label for="img">Image:</label><br />
-      <input type="file" name="img" id="img" />
+      <input type="file" name="img" id="img"/>
     </div>
-      <input type="submit" name="addSubmit" value="Ajouter" />
+      <input type="submit" name="addSubmit" value="Ajouter"/>
   </form>
 </div>

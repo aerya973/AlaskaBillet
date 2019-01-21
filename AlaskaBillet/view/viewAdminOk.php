@@ -20,8 +20,8 @@
           <td><?= $article->getDate(); ?></td>
           <td><img src="<?= $imgPath.$article->getImg(); ?>" /></td>
           <td>
-            <button><a href="ShowArticle/<?= $article->getId(); ?>">Editer</a></button>
-          <button class="myBtn">Supprimer</button>
+            <button class="editBtn"><a href="ShowArticle/<?= $article->getId(); ?>">Editer</a></button>
+          <button class="deleteBtn">Supprimer</button>
           </td>
         </tr>
         <?php endforeach; ?>
@@ -32,7 +32,7 @@
             <form action="<?= HtmlHelper::getAction('deleteArticle', 'Admin') ?>" method="post">
               <input type="hidden" name="id" value="<?= $article->getId(); ?>"></input>
               <p>Voulez-vous supprimer cet article ? </p>
-              <button name="deletePost">supprimer</button>
+              <button name="deletePost" class="deleteBtn">supprimer</button>
             </form>
           </div>
         </div>
