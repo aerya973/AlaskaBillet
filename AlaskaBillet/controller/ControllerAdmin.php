@@ -147,20 +147,16 @@ class ControllerAdmin extends ControllerBase
         echo "[AVANT CONDITION]";
 
         var_dump($param);
+        //PAS param['img'];
 
-        if(isset($param['title'], $param['content'], $param['img']))
+        if(isset($param['title'], $param['content']))
         {
           echo "[DEBUT CONDITION]";
 
-          var_dump($param);
-
           $title = $param['title'];
           $content = $param['content'];
-          $image = $param['img'];
-          echo "- Vars " . $title . " " . $content . " " . $image . " -";
+          $image = $_FILES["img"]["name"];
           $this->_articleManager = new ArticleManager;
-
-          echo "=====";
 
           if($this->_articleManager->add($title, $content, $image))
           {
