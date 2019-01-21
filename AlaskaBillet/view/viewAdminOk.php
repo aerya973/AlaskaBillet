@@ -21,9 +21,10 @@
           <td><img src="<?= $imgPath.$article->getImg(); ?>" /></td>
           <td>
             <button><a href="ShowArticle/<?= $article->getId(); ?>">Editer</a></button>
-          <button id="myBtn">Supprimer</button>
+          <button class="myBtn">Supprimer</button>
           </td>
         </tr>
+        <?php endforeach; ?>
 
         <div id="myModal" class="modal">
           <div class="modal-content">
@@ -37,7 +38,6 @@
         </div>
 
 
-        <?php endforeach; ?>
     </tbody>
   </table>
 </div>

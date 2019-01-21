@@ -124,19 +124,34 @@ class ControllerAdmin extends ControllerBase
 
   public function AddArticle($param)
   {
-    
+
     if($this->verifyAdmin())
     {
-      var_dump($param);
+      $target_dir = "assets/";
+      $target_file = $target_dir . basename($_FILES["img"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
       if(isset($param['addSubmit']))
       {
+
+        $check = getimagesize($_FILES["img"]["tmp_name"]);
+        if($check !== false) {
+          echo "Le fichier est une image - " . $check["mime"] . ".";
+
+          $uploadOk = 1;
+        } else {
+          echo "Le fichier n'est pas une image";
+          $uploadOk = 0;
+        }
+
         if(isset($param['title'], $param['content'], $param['img']))
         {
-
           $title = $param['title'];
           $content = $param['content'];
           $image = $param['img'];
           $this->_articleManager = new ArticleManager;
+
           if($this->_articleManager->add($title, $content, $image))
           {
             echo "Mise a jour effectuee";
@@ -144,6 +159,18 @@ class ControllerAdmin extends ControllerBase
           {
             echo "erreur";
           }
+        }
+      }
+      if ($uploadOk == 0) {
+        echo "Désolé, votre fichier n'a pas été téléchargé.";
+      // if everything is ok, try to upload file
+      } else {
+        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file))
+        {
+          echo "Votre fichier ". basename( $_FILES["img"]["name"]). " a été téléchargé.";
+        } else
+        {
+          echo "Désolé, une erreur s'est produite lors de l'envoi de votre fichier.";
         }
       }
     $this->ShowArticles();
@@ -180,5 +207,15 @@ class ControllerAdmin extends ControllerBase
   public function verifyAdmin()
   {
     return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
+  }
+
+
+  public function errorProd()
+  {
+    if ($this->_config->environnement == "prod")
+    {
+      $this->_view = new View('Error');
+      $this->_view->generate(array());
+    }
   }
 }
