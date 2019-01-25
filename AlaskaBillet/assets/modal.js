@@ -6,8 +6,11 @@ var span = document.getElementsByClassName("close")[0];
 //This is just faster than typing Array.prototype.forEach.call(...);
 //Copy Object
   [].forEach.call(btn, function(el) {
-    el.onclick = function() {
+    el.onclick = function() { //addEventListener
         modal.style.display = "block";
+        var modalId = document.querySelector('#myModal input[type="hidden"]');
+        modalId.value = this.dataset.id;
+
     }
   })
   span.onclick = function() {

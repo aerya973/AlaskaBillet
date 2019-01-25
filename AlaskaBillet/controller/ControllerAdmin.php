@@ -221,14 +221,4 @@ class ControllerAdmin extends ControllerBase
   {
     return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
   }
-
-
-  public function errorProd()
-  {
-    if ($this->_config->environnement == "prod")
-    {
-      $this->_view = new View('Error');
-      $this->_view->generate(array());
-    }
-  }
 }

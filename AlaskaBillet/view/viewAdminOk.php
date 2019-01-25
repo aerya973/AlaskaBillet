@@ -21,7 +21,7 @@
           <td><img src="<?= $imgPath.$article->getImg(); ?>" /></td>
           <td>
             <button class="editBtn"><a href="ShowArticle/<?= $article->getId(); ?>">Editer</a></button>
-          <button class="deleteBtn">Supprimer</button>
+          <button class="deleteBtn" data-id="<?= $article->getId(); ?>">Supprimer</button>
           </td>
         </tr>
         <?php endforeach; ?>
@@ -30,9 +30,9 @@
           <div class="modal-content">
             <span class="close">&times;</span>
             <form action="<?= HtmlHelper::getAction('deleteArticle', 'Admin') ?>" method="post">
-              <input type="hidden" name="id" value="<?= $article->getId(); ?>"></input>
+              <input type="hidden" name="id"></input>
               <p>Voulez-vous supprimer cet article ? </p>
-              <button name="deletePost" class="deleteBtn">supprimer</button>
+              <button name="deletePost" class="deleteBouton">supprimer</button>
             </form>
           </div>
         </div>
