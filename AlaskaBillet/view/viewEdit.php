@@ -1,7 +1,7 @@
 
 <div class="containerForm">
   <h4>Modifier un article</h4>
-  <form action="<?= HtmlHelper::getAction('ShowEdit', 'Admin') ?>" method="post">
+  <form action="<?= HtmlHelper::getAction('ShowEdit', 'Admin') ?>" method="post" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="<?= $oneArticle->getId() ?>" />
     <div>
       <label for="title">Title:</label><br />
@@ -13,8 +13,8 @@
     </div>
     <div>
       <label for="title">Image:</label><br />
-      <input type="image" name="img" value="<?= $oneArticle->getImg(); ?>"/>
-      <input type="file" name="img" accept="image/*">
+      <input type="image" name="image" value="<?= $oneArticle->getImg(); ?>"/>
+      <input type="file" name="img" id="img" />
     </div>
     <button type="submit" name="editSubmit">Modifier</button>
   </form>

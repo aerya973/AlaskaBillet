@@ -1,2 +1,2 @@
 <?php
-echo $errorMsg;
+echo 'Exception reçue : '. $errorMsg . "\n";

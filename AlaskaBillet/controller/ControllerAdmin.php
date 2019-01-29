@@ -40,12 +40,14 @@ class ControllerAdmin extends ControllerBase
       }
       else
       {
-        echo "Not authorized";
+        throw new ErrorMsg("Not authorized");
+        // echo "Not authorized";
+
       }
     }
     else
     {
-      echo 'Attention champ vide';
+      throw new ErrorMsg("Empty");
     }
   }
 
@@ -85,14 +87,29 @@ class ControllerAdmin extends ControllerBase
   {
     if($this->verifyAdmin())
     {
+      $target_dir = "assets/";
+      $target_file = $target_dir . basename($_FILES["img"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
       if(isset($param['editSubmit'])) //$param[''] plutot que POST
       {
-        if(isset($param['title'], $param['content'], $param['img']))
+
+        $check = getimagesize($_FILES["img"]["tmp_name"]);
+        if($check !== false) {
+          echo "Le fichier est une image - " . $check["mime"] . ".";
+          $uploadOk = 1;
+        } else {
+          echo "Le fichier n'est pas une image";
+          $uploadOk = 0;
+        }
+
+        if(isset($param['title'], $param['content']))
         {
           $id = $param['id'];
           $title = $param['title'];
           $content = $param['content'];
-          $image = $param['img'];
+          $image = $_FILES["img"]["name"];
           $this->_articleManager = new ArticleManager;
           if($this->_articleManager->edit($param['id'], $title, $content, $image))
           {
@@ -101,6 +118,19 @@ class ControllerAdmin extends ControllerBase
           {
             echo "erreur";
           }
+        }
+      }
+      if ($uploadOk == 0) {
+        echo "Désolé, votre fichier n'a pas été téléchargé.";
+      // if everything is ok, try to upload file
+      } else {
+        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file))
+        {
+          // print_r($_FILES);
+          echo "Votre fichier ". basename( $_FILES["img"]["name"]). " a été téléchargé.";
+        } else
+        {
+          echo " Désolé, une erreur s'est produite lors de l'envoi de votre fichier.";
         }
       }
       $this->ShowArticles();
@@ -132,7 +162,6 @@ class ControllerAdmin extends ControllerBase
       $uploadOk = 1;
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-      echo "[DEBUT BLOC]";
       if(isset($param['addSubmit']))
       {
         $check = getimagesize($_FILES["img"]["tmp_name"]);
@@ -144,15 +173,8 @@ class ControllerAdmin extends ControllerBase
           $uploadOk = 0;
         }
 
-        echo "[AVANT CONDITION]";
-
-        var_dump($param);
-        //PAS param['img'];
-
         if(isset($param['title'], $param['content']))
         {
-          echo "[DEBUT CONDITION]";
-
           $title = $param['title'];
           $content = $param['content'];
           $image = $_FILES["img"]["name"];
@@ -160,18 +182,13 @@ class ControllerAdmin extends ControllerBase
 
           if($this->_articleManager->add($title, $content, $image))
           {
-            echo "[MILIEU CONDITION]";
             echo "Mise a jour effectuee";
           } else
           {
             echo "erreur";
           }
-          echo "[FIN CONDITION]";
-
         }
-        echo "[APRES CONDITION]";
       }
-      echo "[FIN BLOC]";
 
       if ($uploadOk == 0) {
         echo "Désolé, votre fichier n'a pas été téléchargé.";
@@ -221,4 +238,6 @@ class ControllerAdmin extends ControllerBase
   {
     return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
   }
+
+  public function verifyImg(){}
 }

@@ -1,5 +1,8 @@
 <?php
 require_once('view/View.php');
+require_once('Exception.php');
+
+
 class Router
 {
   private $_ctrl;
@@ -59,12 +62,11 @@ class Router
         $this->_ctrl = new ControllerArticle($url);
       }
     }
-    catch(Exception $e)
+    catch(ErrorMsg $e)
     {
       $errorMsg = $e->getMessage();
       $this->_view = new View('Error');
       $this->_view->generate(array('errorMsg'=> $errorMsg));
-
     }
   }
 
