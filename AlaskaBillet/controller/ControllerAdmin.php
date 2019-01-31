@@ -40,14 +40,14 @@ class ControllerAdmin extends ControllerBase
       }
       else
       {
-        throw new ErrorMsg("Not authorized");
+        throw new ErrorMsg("Le nom d'utilisateur ou le mot de passe n'est pas correct");
         // echo "Not authorized";
 
       }
     }
     else
     {
-      throw new ErrorMsg("Empty");
+      throw new ErrorMsg("Un des champs est vides");
     }
   }
 

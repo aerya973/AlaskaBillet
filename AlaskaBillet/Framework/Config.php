@@ -5,8 +5,9 @@ class Config
 
   private $file;
   public $rootPath;
-  public $userName;
-  public $password;
+  private $userName;
+  private $password;
+
 
   public function __construct()
   {

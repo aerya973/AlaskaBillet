@@ -212,3 +212,18 @@ button.deleteBtn {
 .editBtn a {
   color:white;
 }
+
+
+/* Message d'erreur */
+
+.errorMessage {
+    text-align: center;
+    background: white;
+    width: 60%;
+    margin-left: 20%;
+    padding: 5%;
+    border: 5px solid #cdcdcd1f;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 1.3em;
+}

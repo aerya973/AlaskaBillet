@@ -62,12 +62,13 @@ class Router
         $this->_ctrl = new ControllerArticle($url);
       }
     }
+ //Recuperer la config Condition dev/prod
     catch(ErrorMsg $e)
     {
       $errorMsg = $e->getMessage();
       $this->_view = new View('Error');
       $this->_view->generate(array('errorMsg'=> $errorMsg));
-    }
+    } 
   }
 
   public function getHttpParameter(){
