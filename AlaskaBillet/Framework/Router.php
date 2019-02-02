@@ -8,6 +8,7 @@ class Router
   private $_ctrl;
   private $_view;
   private $_parameter;
+  private $_error;
 
   public function routeReq()
   {
@@ -22,8 +23,12 @@ class Router
         } else if(file_exists($class.'.php'))
         {
           require_once($class.'.php');
+        } else if (file_exists('controller/' . $class . '.php')){
+          require_once('controller/'. $class.'.php');
         }
       });
+
+      $this->_error = new ControllerError();
 
       $url= '';
       //CONTROLLER INCLUT SELON L'ACTION DE L'UTILISATEUR
@@ -36,7 +41,7 @@ class Router
         $controllerFile = 'controller/' . $controllerClass.".php";
         if(file_exists($controllerFile))
         {
-          require_once($controllerFile);
+
           $this->_ctrl = new $controllerClass($url);
 
           if(method_exists($this->_ctrl, $action)){
@@ -50,10 +55,10 @@ class Router
               $this->_ctrl->$action();
             }
           } else {
-            throw new Exception('Action introuvable');
+            $this->_error->showError(new Exception('Action introuvable'));
           }
         } else {
-          throw new Exception('Page Introuvable');
+          $this->_error->showError(new Exception('Page introuvable'));
         }
       }
       else
@@ -65,10 +70,8 @@ class Router
  //Recuperer la config Condition dev/prod
     catch(ErrorMsg $e)
     {
-      $errorMsg = $e->getMessage();
-      $this->_view = new View('Error');
-      $this->_view->generate(array('errorMsg'=> $errorMsg));
-    } 
+      $this->_error->showError($e);
+    }
   }
 
   public function getHttpParameter(){
