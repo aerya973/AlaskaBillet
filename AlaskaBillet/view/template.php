@@ -6,7 +6,7 @@
   <body>
     <header>
       <?php require 'include/header.php' ?>
-    </header>
+    </header>    
     <?= $content ?>
     <footer>
       <?php require 'include/footer.php' ?>

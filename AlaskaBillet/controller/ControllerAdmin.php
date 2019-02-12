@@ -14,8 +14,14 @@ class ControllerAdmin extends ControllerBase
   }
 //AUTENTIFICATION/////////////////////////////////////////////////
   public function Admin(){
-    $this->_view = new View('Admin');
-    $this->_view->generate(array());
+
+    if($this->verifyAdmin())
+    {
+      $this->ShowArticles();
+    } else {
+      $this->_view = new View('Admin');
+      $this->_view->generate(array());
+    }
   }
 
   public function Authentification($param)
@@ -42,8 +48,6 @@ class ControllerAdmin extends ControllerBase
       else
       {
         throw new ErrorMsg("Le nom d'utilisateur ou le mot de passe n'est pas correct");
-        // echo "Not authorized";
-
       }
     }
     else
@@ -95,10 +99,8 @@ class ControllerAdmin extends ControllerBase
       $uploadOk = 1;
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-      if(isset($param['editSubmit'])) //$param[''] plutot que POST
+      if(isset($param['editSubmit']))
       {
-
-
 
         if(isset($param['title'], $param['content']))
         {
@@ -112,10 +114,9 @@ class ControllerAdmin extends ControllerBase
           {
             $check = getimagesize($_FILES["img"]["tmp_name"]);
             if($check !== false) {
-              echo "Le fichier est une image - " . $check["mime"] . ".";
               $uploadOk = 1;
             } else {
-              echo "Le fichier n'est pas une image";
+              throw new ErrorMsg("Le fichier n'est pas une image");
               $uploadOk = 0;
             }
             $image = $_FILES["img"]["name"];
@@ -124,7 +125,7 @@ class ControllerAdmin extends ControllerBase
               $this->_articleManager->edit($param['id'], $title, $content, $image);
             }
             if ($uploadOk == 0) {
-              echo "Désolé, votre fichier n'a pas été téléchargé.";
+              throw new ErrorMsg("Le fichier n'est pas une image");
             // if everything is ok, try to upload file
             } else {
               if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file))
@@ -133,7 +134,7 @@ class ControllerAdmin extends ControllerBase
                 echo "Votre fichier ". basename( $_FILES["img"]["name"]). " a été téléchargé.";
               } else
               {
-                echo " Désolé, une erreur s'est produite lors de l'envoi de votre fichier.";
+                throw new ErrorMsg("Désolé, une erreur s'est produite lors de l'envoi de votre fichier.");
               }
             }
           } else
@@ -177,10 +178,9 @@ class ControllerAdmin extends ControllerBase
       {
         $check = getimagesize($_FILES["img"]["tmp_name"]);
         if($check !== false) {
-          echo "Le fichier est une image - " . $check["mime"] . ".";
           $uploadOk = 1;
         } else {
-          echo "Le fichier n'est pas une image";
+          throw new ErrorMsg("Le fichier n'est pas une image.");
           $uploadOk = 0;
         }
 
@@ -196,18 +196,16 @@ class ControllerAdmin extends ControllerBase
             echo "Mise a jour effectuee";
           } else
           {
-            echo "erreur";
+            throw new ErrorMsg("Erreur.");
           }
         }
       }
 
       if ($uploadOk == 0) {
-        echo "Désolé, votre fichier n'a pas été téléchargé.";
-      // if everything is ok, try to upload file
+        throw new ErrorMsg("Désolé, votre fichier n'a pas été téléchargé.");
       } else {
         if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file))
         {
-          // print_r($_FILES);
           echo "Votre fichier ". basename( $_FILES["img"]["name"]). " a été téléchargé.";
         } else
         {
@@ -217,7 +215,6 @@ class ControllerAdmin extends ControllerBase
       $this->ShowArticles();
     } else
     {
-      // header('location: '.$this->_config->rootPath.'Admin/Admin');
       header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
@@ -235,13 +232,12 @@ class ControllerAdmin extends ControllerBase
             echo "Mise a jour effectuee";
           } else
           {
-            echo "erreur";
+            throw new ErrorMsg("Erreur.");
           }
         }
         $this->ShowArticles();
     } else
     {
-      // header('location: '.$this->_config->rootPath.'Admin/Admin');
       header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
@@ -252,5 +248,4 @@ class ControllerAdmin extends ControllerBase
     return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
   }
 
-  public function verifyImg(){}
 }

@@ -25,16 +25,13 @@ class View
     if(file_exists($file))
     {
       extract($data);
-
-
       ob_start();
       $config = new Config();
       //INCLUT LE FICHIER VUE
       require $file;
-
       return ob_get_clean();
     }
     else
-      throw new Exception('Fichier '.$file.' introuvable');
+      throw new ErrorMsg('Fichier '.$file.' introuvable');
   }
 }
