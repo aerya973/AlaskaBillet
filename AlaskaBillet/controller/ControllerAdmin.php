@@ -98,42 +98,48 @@ class ControllerAdmin extends ControllerBase
       if(isset($param['editSubmit'])) //$param[''] plutot que POST
       {
 
-        $check = getimagesize($_FILES["img"]["tmp_name"]);
-        if($check !== false) {
-          echo "Le fichier est une image - " . $check["mime"] . ".";
-          $uploadOk = 1;
-        } else {
-          echo "Le fichier n'est pas une image";
-          $uploadOk = 0;
-        }
+
 
         if(isset($param['title'], $param['content']))
         {
           $id = $param['id'];
           $title = $param['title'];
           $content = $param['content'];
-          $image = $_FILES["img"]["name"];
           $this->_articleManager = new ArticleManager;
-          if($this->_articleManager->edit($param['id'], $title, $content, $image))
+
+          // if(isset($param['img']))
+          if($_FILES["img"]["size"] > 0)
           {
-            echo "Mise a jour effectuee";
+            $check = getimagesize($_FILES["img"]["tmp_name"]);
+            if($check !== false) {
+              echo "Le fichier est une image - " . $check["mime"] . ".";
+              $uploadOk = 1;
+            } else {
+              echo "Le fichier n'est pas une image";
+              $uploadOk = 0;
+            }
+            $image = $_FILES["img"]["name"];
+            if(isset($image))
+            {
+              $this->_articleManager->edit($param['id'], $title, $content, $image);
+            }
+            if ($uploadOk == 0) {
+              echo "Désolé, votre fichier n'a pas été téléchargé.";
+            // if everything is ok, try to upload file
+            } else {
+              if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file))
+              {
+                // print_r($_FILES);
+                echo "Votre fichier ". basename( $_FILES["img"]["name"]). " a été téléchargé.";
+              } else
+              {
+                echo " Désolé, une erreur s'est produite lors de l'envoi de votre fichier.";
+              }
+            }
           } else
           {
-            echo "erreur";
+            $this->_articleManager->edit($param['id'], $title, $content, null);
           }
-        }
-      }
-      if ($uploadOk == 0) {
-        echo "Désolé, votre fichier n'a pas été téléchargé.";
-      // if everything is ok, try to upload file
-      } else {
-        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file))
-        {
-          // print_r($_FILES);
-          echo "Votre fichier ". basename( $_FILES["img"]["name"]). " a été téléchargé.";
-        } else
-        {
-          echo " Désolé, une erreur s'est produite lors de l'envoi de votre fichier.";
         }
       }
       $this->ShowArticles();
