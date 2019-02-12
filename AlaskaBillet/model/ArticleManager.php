@@ -9,9 +9,15 @@ class ArticleManager extends ModelManager
 
   public function edit($id, $title, $content, $img)
   {
-    $req = $this->getBdd()->prepare('UPDATE '.$this->_table.' SET title = ?, content =  ?, img = ? WHERE id = ?');
-    $req->execute(array($title, $content, $img, $id));
-
+    if($img == null)
+    {
+        $req = $this->getBdd()->prepare('UPDATE '.$this->_table.' SET title = ?, content =  ? WHERE id = ?');
+        $req->execute(array($title, $content, $id));
+    } else
+    {
+      $req = $this->getBdd()->prepare('UPDATE '.$this->_table.' SET title = ?, content =  ?, img = ? WHERE id = ?');
+      $req->execute(array($title, $content, $img, $id));
+    }
   }
 
   public function add($title, $content, $img)

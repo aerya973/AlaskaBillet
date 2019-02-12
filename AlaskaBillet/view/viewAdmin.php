@@ -1,5 +1,5 @@
 
-<form action="Authentification" method="post">
+<form action="<?= HtmlHelper::getAction('Authentification', 'Admin') ?>" method="post">
   <label for="user_name"></label>
   <input type="username" id="user_name" name="user_name" placeholder="username">
   <label for="user_pass"></label>

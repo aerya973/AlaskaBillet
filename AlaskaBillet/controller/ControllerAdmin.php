@@ -36,7 +36,8 @@ class ControllerAdmin extends ControllerBase
       if ($admin != false)
       {
         $_SESSION['user'] = $admin;
-        header('location: '.$this->_config->rootPath.'Admin/ShowArticles');
+        // header('location: '.$this->_config->rootPath.'Admin/ShowArticles');
+        header('Location: '.$this->_config->rootPath.'index.php?url=Admin/ShowArticles');
       }
       else
       {
@@ -63,7 +64,8 @@ class ControllerAdmin extends ControllerBase
       $this->_view->generate(array('listeArticle' => $listeArticle, 'imgPath' => $this->_config->rootPath.'assets/'));
     } else
     {
-      header('location: '.$this->_config->rootPath.'Admin/Admin');
+      // header('location: '.$this->_config->rootPath.'Admin/Admin');
+      header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
 
@@ -78,7 +80,8 @@ class ControllerAdmin extends ControllerBase
       $this->_view->generate(array('oneArticle' => $oneArticle, 'imgPath' => $this->_config->rootPath.'assets/'));
     } else
     {
-      header('location: '.$this->_config->rootPath.'Admin/Admin');
+      // header('location: '.$this->_config->rootPath.'Admin/Admin');
+      header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
 
@@ -136,7 +139,8 @@ class ControllerAdmin extends ControllerBase
       $this->ShowArticles();
     } else
     {
-      header('location: '.$this->_config->rootPath.'Admin/Admin');
+      // header('location: '.$this->_config->rootPath.'Admin/Admin');
+      header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
 
@@ -148,7 +152,8 @@ class ControllerAdmin extends ControllerBase
     $this->_view->generate(array());
     } else
     {
-      header('location: '.$this->_config->rootPath.'Admin/Admin');
+      // header('location: '.$this->_config->rootPath.'Admin/Admin');
+      header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
 
@@ -206,7 +211,8 @@ class ControllerAdmin extends ControllerBase
       $this->ShowArticles();
     } else
     {
-      header('location: '.$this->_config->rootPath.'Admin/Admin');
+      // header('location: '.$this->_config->rootPath.'Admin/Admin');
+      header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
 
@@ -229,7 +235,8 @@ class ControllerAdmin extends ControllerBase
         $this->ShowArticles();
     } else
     {
-      header('location: '.$this->_config->rootPath.'Admin/Admin');
+      // header('location: '.$this->_config->rootPath.'Admin/Admin');
+      header('Location: '.$this->_config->rootPath.'index.php?url=Admin/Admin');
     }
   }
 

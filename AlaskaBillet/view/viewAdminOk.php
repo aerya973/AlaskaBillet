@@ -1,5 +1,5 @@
 <div class="addArticle">
-<a href="ShowAdd">Ajouter un article</a>
+<a href="<?= HtmlHelper::getAction('ShowAdd', 'Admin') ?>">Ajouter un article</a>
 </div>
 <div style="overflow-x:auto;">
   <table>
@@ -20,7 +20,10 @@
           <td><?= $article->getDate(); ?></td>
           <td><img src="<?= $imgPath.$article->getImg(); ?>" /></td>
           <td>
-            <button class="editBtn"><a href="ShowArticle/<?= $article->getId(); ?>">Editer</a></button>
+
+
+
+            <button class="editBtn"><a href=" <?= HtmlHelper::getActionId('ShowArticle', 'Admin', $article->getId()) ?>">Editer</a></button>
           <button class="deleteBtn" data-id="<?= $article->getId(); ?>">Supprimer</button>
           </td>
         </tr>
@@ -29,7 +32,7 @@
         <div id="myModal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
-            <form action="<?= HtmlHelper::getAction('deleteArticle', 'Admin') ?>" method="post">
+            <form action="<?= HtmlHelper::getActionId('deleteArticle', 'Admin', $article->getId()) ?>" method="post">
               <input type="hidden" name="id"></input>
               <p>Voulez-vous supprimer cet article ? </p>
               <button name="deletePost" class="deleteBouton">supprimer</button>
