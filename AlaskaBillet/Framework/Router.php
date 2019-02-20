@@ -35,16 +35,18 @@ class Router
       if(isset($_GET['url']))
       {
         $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
+        global $currentController;
         $controller = ucfirst(mb_strtolower($url[0]));
         $action = ucfirst(mb_strtolower($url[1]));
         $controllerClass = "Controller".$controller;
         $controllerFile = 'controller/' . $controllerClass.".php";
         if(file_exists($controllerFile))
         {
-
           $this->_ctrl = new $controllerClass($url);
+          $currentController = $this->_ctrl;
 
           if(method_exists($this->_ctrl, $action)){
+
             $this->getHttpParameter();
             if(count($this->_parameter) > 0)
             {

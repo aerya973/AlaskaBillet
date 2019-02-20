@@ -4,7 +4,7 @@ require_once('controller/ControllerBase.php');
 // "Colle entre la vue et modele"
 class ControllerComment extends ControllerBase {
 
-  private $_commentManager;
+  public $_commentManager;
 
   public function __construct()
   {
@@ -12,25 +12,24 @@ class ControllerComment extends ControllerBase {
   }
 
   public function addComment($param){
-      echo "DEBUT";
-      var_dump($param);
     if(isset($param['CommentSubmit'])){
-      echo "SIL Y A UN BOUTON SUBMIT";
-      if(isset($param['com_author'], $param['com_content']))
+      if(!empty($param['author']) && (!empty($param['content'])))
       {
-          echo "SIL Y A UN AUTEUR ET UN COMMENTAIRE";
-      $id = $param['id'];
-      $author = $param['com_author'];
-      $content = $param['com_content'];
+        $articleId = $param['articleId'];
+        $author = $param['author'];
+        $content = $param['content'];
+        $this->_commentManager = new CommentManager();
 
-      $this->_commentManager = new CommentManager;
-      echo 'ON FAIT LA REQUETE';
-      if($this->_commentManager->add($id, $author, $content)){
-        echo "Mise a jour effectuee";
-        echo "REQUETE OK";
-      } else {
-        echo "erreur";
+        if($this->_commentManager->add($author, $content, $articleId)){
+          header('Location: '.$this->_config->rootPath.'index.php?url=Article/Articles');
+          // $this->Alert('Les articles ont bien ete charges', 'success');
+        } else {
+          throw new ErrorMsg("Une erreur est survenue lors de l'envoi du commentaire.");
+        }
       }
+      else
+      {
+        throw new ErrorMsg("Veuillez remplir les tous les champs");
       }
     }
   }

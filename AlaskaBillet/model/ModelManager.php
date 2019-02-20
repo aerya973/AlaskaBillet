@@ -1,4 +1,4 @@
-<?php
+ <?php
 abstract class ModelManager
 {
   private static $_bdd;
@@ -24,6 +24,7 @@ abstract class ModelManager
     $var = [];
     $req = $this->getBdd()->prepare('SELECT * FROM '.$this->_table.' ORDER BY id DESC');
     $req-> execute();
+
     while($data = $req->fetch(PDO::FETCH_ASSOC))
     {
       $var[] = new $this->_obj($data);

@@ -2,7 +2,7 @@
 // RECUPERE LES DONNEES DE FACON SECURISEE
 class Article extends Model
 {
-  private $_id;
+  public $_id;
   private $_title;
   private $_content;
   private $_date;

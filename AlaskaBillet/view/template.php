@@ -6,7 +6,13 @@
   <body>
     <header>
       <?php require 'include/header.php' ?>
-    </header>    
+    </header>
+    <?php if($alert !== null) {
+
+      $view = new View();
+      echo $view->generateFile('view/alert.php',array('alert' => $alert));
+
+    } ?>
     <?= $content ?>
     <footer>
       <?php require 'include/footer.php' ?>

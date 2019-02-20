@@ -14,6 +14,6 @@
       <label for="img">Image:</label><br />
       <input type="file" name="img" id="img"/>
     </div>
-      <input type="submit" name="addSubmit" value="Ajouter"/>
+      <button class="addButton2" type="submit" name="addSubmit">Ajouter</button>
   </form>
 </div>

@@ -1,69 +1,70 @@
 <?php
 
 class Comment extends Model {
-  private $_com_id;
-  private $_com_date;
-  private $_com_author;
-  private $_com_content;
-  private $_article_id;
+  public $_id;
+  public $_date;
+  public $_author;
+  public $_content;
+  public $_articleId;
 
 // SETTER
-  public function setComId($com_Id)
+  public function setId($_id)
   {
-    $com_Id = (int) $com_Id;
-    if($com_Id > 0)
-    $this->_com_id = $com_Id;
+    $_id = (int) $_id;
+    if($_id > 0)
+    $this->_id = $_id;
   }
-  public function setComDate($com_date)
+  public function setDate($_date)
   {
-    $this->_com_date = $com_date;
+    $this->_date = $_date;
   }
 
-  public function setComAuthor($com_author)
+  public function setAuthor($_author)
   {
-    if(is_string($com_author))
+    if(is_string($_author))
     {
-      $this->_com_author = $com_author;
+      $this->_author = $_author;
     }
   }
 
-  public function setComContent($com_content)
+  public function setContent($_content)
   {
-    if(is_string($com_content))
+    if(is_string($_content))
     {
-      $this->_com_content = $com_content;
+      $this->_content = $_content;
     }
   }
 
-  public function setArticleId($article_id)
+  public function setArticleId($_articleId)
   {
-    $article_id = (int) $article_id;
-    if($article_id > 0)
-    $this->_article_id = $article_id;
+    $_articleId = (int) $_articleId;
+    if($_articleId > 0)
+    $this->_articleId = $_articleId;
+
   }
 
 // GETTER
-  public function getComId()
+  public function getId()
   {
-    return $this->_com_id;
+    return $this->_id;
   }
 
-  public function getComDate()
+  public function getDate()
   {
-    return $this->_com_date;
+    return $this->_date;
   }
-  public function getComAuthor()
+  public function getAuthor()
   {
-    return $this->_com_author;
+    return $this->_author;
   }
-  public function getComContent()
+  public function getContent()
   {
-    return $this->_com_content;
+    return $this->_content;
   }
 
   public function getArticleId()
   {
-    return $this->_article_id;
+    return $this->_articleId;
   }
 
 }

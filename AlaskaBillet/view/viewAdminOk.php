@@ -1,5 +1,6 @@
+<div class="logout"><a href="<?= HtmlHelper::getAction('logOut', 'Admin') ?>">Deconnexion</a></div>
 <div class="addArticle">
-<a href="<?= HtmlHelper::getAction('ShowAdd', 'Admin') ?>">Ajouter un article</a>
+<button class="addButton1"><a href="<?= HtmlHelper::getAction('ShowAdd', 'Admin') ?>">Ajouter un article</a></button>
 </div>
 <div style="overflow-x:auto;">
   <table>
@@ -14,17 +15,16 @@
     </thead>
     <tbody>
         <?php foreach ($listeArticle as $article): ?>
-        <tr class="descriptionAdmin">
-          <td><?= $article->getTitle(); ?></td>
+        <tr class="manageArticle">
+          <td class="title"><?= $article->getTitle(); ?></td>
           <td><?= $article->getContent(); ?></td>
           <td><?= $article->getDate(); ?></td>
           <td><img src="<?= $imgPath.$article->getImg(); ?>" /></td>
           <td>
 
-
-
-            <button class="editBtn"><a href=" <?= HtmlHelper::getActionId('ShowArticle', 'Admin', $article->getId()) ?>">Editer</a></button>
+          <button class="editBtn"><a href=" <?= HtmlHelper::getActionId('ShowArticle', 'Admin', $article->getId()) ?>">Editer</a></button>
           <button class="deleteBtn" data-id="<?= $article->getId(); ?>">Supprimer</button>
+          <button class="editBtn"><a href=" <?= HtmlHelper::getActionId('ShowArticle', 'Admin', $article->getId()) ?>">Commentaires</a></button>
           </td>
         </tr>
         <?php endforeach; ?>
@@ -39,7 +39,7 @@
             </form>
           </div>
         </div>
-        
+
     </tbody>
   </table>
 </div>

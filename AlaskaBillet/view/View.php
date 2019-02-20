@@ -5,7 +5,7 @@ class View
   private $_file;
   private $_t;
 
-  public function __construct($action)
+  public function __construct($action = null)
   {
     $this->_file = 'view/view'.$action.'.php';
   }
@@ -14,13 +14,13 @@ class View
   {
     //PARTIE SPECIFIQUE DE LA VUE
     $content = $this->generateFile($this->_file, $data);
-
     //TEMPLATE
-    $view = $this->generateFile('view/template.php', array('_t' => $this->_t, 'content' => $content));
+    global $currentController;
+    $view = $this->generateFile('view/template.php', array('_t' => $this->_t, 'content' => $content, 'alert' => $currentController->_alert));
     echo $view;
   }
   //GENERE UN FICHIER VUE, RENVOI RESULTAT PRODUIT
-  private function generateFile($file, $data)
+  public function generateFile($file, $data)
   {
     if(file_exists($file))
     {

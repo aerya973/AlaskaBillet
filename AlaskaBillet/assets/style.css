@@ -59,11 +59,12 @@ body {
  table {
    background-color: white;
    margin-right: 5%;
+   margin-left:5%;
  }
 
 td {
    height: 50px;
-   vertical-align: bottom;
+   vertical-align: top;
  }
 
  th {
@@ -87,6 +88,7 @@ input[type=text]{
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
+  font-size: 1em;
 }
 
 label {
@@ -95,20 +97,6 @@ label {
     font-size: 2em;
     width: 100%;
     text-align: left;
-}
-
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
 }
 
 article {
@@ -120,15 +108,36 @@ article {
     text-align: justify;
 }
 
+/* CLASSES */
+
+/* View Edit */
+
 .containerForm {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 60px;
-    width: 70%;
-    margin-left: 15%;
+  border-radius: 5px;
+  background-color: #f6f5f5d1;
+  padding: 19px;
+  width: 79%;
+  margin-left: 10%;
+}
+
+.containerForm h4 {
+    text-align: center;
+    font-size: 4em;
+    font-family: 'Moon Flower';
+    margin: 31px;
+}
+
+.containerForm label {
+    font-family: 'Moon Flower';
+    font-weight: 600;
+    font-size: 3em;
 }
 
 
+/* view Articles */
+
+
+/* Manage Posts */
 tr:hover {background-color: #f5f5f5;}
 
 
@@ -163,18 +172,10 @@ tr:hover {background-color: #f5f5f5;}
   z-index: 3;
 }
 
-.descriptionAdmin img {
+.manageArticle img {
   width: 200px;
 }
 
-#editeur{
-    width: 500px;
-    height: 200px;
-    border: 1px solid black;
-    padding: 5px;
-    overflow: auto;
-    background-color: white;
-}
 
 
 /* MODAL */
@@ -216,6 +217,7 @@ tr:hover {background-color: #f5f5f5;}
   cursor: pointer;
 }
 
+/* Buttons  */
 
 button.deleteBtn {
     width: 100%;
@@ -226,7 +228,7 @@ button.deleteBtn {
     font-weight: bold;
     color:white;
 }
-
+/*  Buttons  */
 .editBtn {
   width: 100%;
   background-color: #5a85ff;
@@ -242,7 +244,67 @@ button.deleteBtn {
 }
 
 
-/* Message d'erreur */
+.modifyBtn {
+  width: 20%;
+  background-color: #5a85ff;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: white;
+  margin-left: 40%;
+  margin-top: 5%;
+  font-size: 1.3em;
+}
+
+.addButton1 {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  font-size: 1.2em;
+  margin-left: 1%;
+}
+
+.addButton1 a {
+  color:white;
+  font-weight:500;
+}
+
+.addButton2 {
+  background-color: #4CAF50;
+  cursor: pointer;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: white;
+  margin-left: 40%;
+  margin-top: 5%;
+  font-size: 1.3em;
+  width: 20%;
+}
+
+
+.addButton1:hover,
+.addButton2:hover {
+  background-color: #45a049;
+}
+
+.logout {
+  float: right;
+  margin-right: 4%;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+/* Error Message */
 
 .errorMessage {
     text-align: center;
@@ -257,7 +319,33 @@ button.deleteBtn {
 }
 
 
-/* Commentaires */
+
+
+/* Comments */
+.comments{
+  background-color: #cdcdcd1f;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.boxAuthor {
+  width: 20%;
+  padding-bottom: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.boxDate {
+    width: 80%;
+    padding-top: 5px;
+}
+
+.boxMsg {
+  height: auto;
+  padding-bottom: 25px;
+}
+
+
 
 .comment textarea {
     width: 100%;
@@ -268,4 +356,31 @@ button.deleteBtn {
 
 .comment input[type=text] {
     width: 35%;
+}
+
+/* Alert */
+
+.alert {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin:auto;
+}
+
+.alert.success{
+  background-color: green;
+}
+
+.alert.error{
+  background-color: red;
+}
+
+/* Edit */
+
+.editImg {}
+
+.title{
+  width: 10%;
+  text-align: center;
+  vertical-align: middle;
 }
