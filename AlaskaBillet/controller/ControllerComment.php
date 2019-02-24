@@ -11,6 +11,29 @@ class ControllerComment extends ControllerBase {
     $this->Loadconfig();
   }
 
+  public function ShowComments(){
+    $this->_commentManager = new CommentManager();
+    $listeComm = $this->_commentManager->getAllComments();
+    $this->_view = new View('Comment');
+    $this->_view->generate(array('listeComm' => $listeComm));
+  }
+
+  public function deleteComment($param){
+    if(isset($param['deleteComm']))
+    {
+        $this->_commentManager = new CommentManager();
+        if($this->_commentManager->delete($param['id']))
+        {
+          echo "Mise a jour effectuee";
+        } else
+        {
+          throw new ErrorMsg("Erreur.");
+        }
+      }
+      $this->ShowComments();
+  }
+
+
   public function addComment($param){
     if(isset($param['CommentSubmit'])){
       if(!empty($param['author']) && (!empty($param['content'])))

@@ -22,7 +22,7 @@ abstract class ModelManager
   public function getAll()
   {
     $var = [];
-    $req = $this->getBdd()->prepare('SELECT * FROM '.$this->_table.' ORDER BY id DESC');
+    $req = $this->getBdd()->prepare('SELECT * FROM '.$this->_table.' ORDER BY id ASC');
     $req-> execute();
 
     while($data = $req->fetch(PDO::FETCH_ASSOC))

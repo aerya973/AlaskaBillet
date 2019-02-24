@@ -9,7 +9,7 @@ class CommentManager extends ModelManager {
 
   public function getAllComments(){
     $tableau = [];
-    $req = $this->getBdd()->prepare('SELECT id, date, author, content, articleId FROM '.$this->_table);
+    $req = $this->getBdd()->prepare('SELECT id, date, author, content, articleId FROM '.$this->_table.' ORDER BY id DESC');
     $req->execute(array());
 
     while($donnees = $req->fetch(PDO::FETCH_ASSOC)){
@@ -32,4 +32,11 @@ class CommentManager extends ModelManager {
     $req = $this->getBdd()->prepare('INSERT INTO '.$this->_table.' (author, content, articleId, date) VALUES (?, ?, ?, NOW())');
     $req->execute(array($author, $content, $articleId));
   }
+
+  public function delete($id)
+  {
+    $req = $this->getBdd()->prepare('DELETE FROM '.$this->_table.' WHERE id = ?');
+    $req->execute(array($id));
+  }
+
 }
