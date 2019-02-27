@@ -39,4 +39,9 @@ class CommentManager extends ModelManager {
     $req->execute(array($id));
   }
 
+  public function update($nbSignal, $id){
+     $req = $this->getBdd()->prepare('UPDATE '.$this->table.'SET signalement = ? WHERE id = ?');
+     return $req->execute(array($nbSignal, $id));
+  }
+
 }

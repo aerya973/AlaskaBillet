@@ -205,11 +205,6 @@ class ControllerAdmin extends ControllerBase
   }
 
 
-  public function verifyAdmin(){
-    return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
-  }
-
-
   public function logOut(){
     if($this->verifyAdmin()){
       session_destroy();
