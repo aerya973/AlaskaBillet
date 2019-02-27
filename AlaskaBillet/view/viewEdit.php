@@ -9,7 +9,7 @@
     </div>
     <div>
       <label for="title">Contenu:</label><br />
-      <input id="mytextarea" name="content" value="<?= $oneArticle->getContent(); ?>" />
+      <textarea id="mytextarea" name="content"> <?= $oneArticle->getContent(); ?></textarea>
     </div>
     <div class="editImg">
       <label for="title">Image:</label><br />

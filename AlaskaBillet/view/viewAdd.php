@@ -8,7 +8,7 @@
     </div>
     <div>
       <label for="content">Contenu:</label><br />
-      <input id="mytextarea2" type="text" name="content" id="content"/>
+      <textarea id="mytextarea" name="content" id="content"></textarea>
     </div>
     <div>
       <label for="img">Image:</label><br />
