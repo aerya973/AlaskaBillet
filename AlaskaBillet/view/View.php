@@ -1,14 +1,17 @@
 <?php
 require_once('Framework/HtmlHelper.php');
+require_once('Framework/Config.php');
 class View
 {
   private $_file;
   private $_t;
+  protected $_config;
 
   public function __construct($action = null)
   {
     $this->_file = 'view/view'.$action.'.php';
   }
+
   // GENERE ET AFFICHE LA VUE
   public function generate($data)
   {

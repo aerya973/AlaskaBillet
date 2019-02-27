@@ -3,10 +3,10 @@
   <li><a href="<?= HtmlHelper::getAction('Admin', 'Admin') ?>">Admin</a></li>
   
   <?php
-  if (isset($_SESSION['user'])) {?>
+  if (isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null) {?>
     <div class='logout'>
       <a href="<?= HtmlHelper::getAction('logOut', 'Admin') ?>">Deconnexion
-        <img src="assets/powerOffIcon.png" alt="logout">
+        <img src="powerOffIcon.png" alt="logout">
       </a>
     </div>
   <?php } ?>

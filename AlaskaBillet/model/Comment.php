@@ -6,6 +6,7 @@ class Comment extends Model {
   public $_author;
   public $_content;
   public $_articleId;
+  public $_signalement;
 
 // SETTER
   public function setId($_id)
@@ -40,6 +41,13 @@ class Comment extends Model {
     $_articleId = (int) $_articleId;
     if($_articleId > 0)
     $this->_articleId = $_articleId;
+  }
+
+  public function setSignalement($_signalement)
+  {
+    $_signalement = (int) $_signalement;
+    if($_signalement >= 0)
+    $this->_signalement = $_signalement;
 
   }
 
@@ -66,5 +74,11 @@ class Comment extends Model {
   {
     return $this->_articleId;
   }
+
+  public function getSignalement()
+  {
+    return $this->_signalement;
+  }
+
 
 }

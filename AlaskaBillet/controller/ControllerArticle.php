@@ -1,18 +1,17 @@
 <?php
+session_start();
 require_once('controller/ControllerBase.php');
 
-
-// "Colle entre la vue et modele"
 class ControllerArticle extends ControllerBase
 {
   private $_articleManager;
   public $_commentManager;
 
 
-  public function __construct($url)
-  {
+  public function __construct(){
     $this->Loadconfig();
   }
+ 
 
   public function Articles(){
     $this->_articleManager = new ArticleManager;
@@ -23,4 +22,5 @@ class ControllerArticle extends ControllerBase
     // $this->Alert('Les articles ont bien ete charges', 'success');
     $this->_view->generate(array('articles' => $articles, 'comments' => $comments, 'imgPath' => $this->_config->rootPath.'assets/'));
   }
+  
 }

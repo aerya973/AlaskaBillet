@@ -12,23 +12,23 @@ class ArticleManager extends ModelManager
     if($img == null)
     {
         $req = $this->getBdd()->prepare('UPDATE '.$this->_table.' SET title = ?, content =  ? WHERE id = ?');
-        $req->execute(array($title, $content, $id));
+        return $req->execute(array($title, $content, $id));
     } else
     {
       $req = $this->getBdd()->prepare('UPDATE '.$this->_table.' SET title = ?, content =  ?, img = ? WHERE id = ?');
-      $req->execute(array($title, $content, $img, $id));
+      return $req->execute(array($title, $content, $img, $id));
     }
   }
 
   public function add($title, $content, $img)
   {
     $req = $this->getBdd()->prepare('INSERT INTO '.$this->_table.' (title, content, img, date) VALUES (?, ?, ?, NOW())');
-    $req->execute(array($title, $content, $img));
+    return $req->execute(array($title, $content, $img));
   }
 
   public function delete($id)
   {
     $req = $this->getBdd()->prepare('DELETE FROM '.$this->_table.' WHERE id = ?');
-    $req->execute(array($id));
+    return $req->execute(array($id));
   }
 }

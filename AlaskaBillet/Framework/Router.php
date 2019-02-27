@@ -31,11 +31,11 @@ class Router
       $this->_error = new ControllerError();
 
       $url= '';
+      global $currentController;
       //CONTROLLER INCLUT SELON L'ACTION DE L'UTILISATEUR
       if(isset($_GET['url']))
       {
         $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
-        global $currentController;
         $controller = ucfirst(mb_strtolower($url[0]));
         $action = ucfirst(mb_strtolower($url[1]));
         $controllerClass = "Controller".$controller;

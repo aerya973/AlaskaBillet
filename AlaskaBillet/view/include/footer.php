@@ -3,7 +3,7 @@ Creation par...
 <script>
 tinymce.init({
   mode : "exact",
-  elements : "mytextarea,mytextarea2",
+  elements : "mytextarea",
   nowrap : true,
   browser_spellcheck: true
 });

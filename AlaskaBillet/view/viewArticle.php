@@ -29,8 +29,13 @@ foreach ($articles as $article): ?>
         <div class="boxAuthor"><?= $comment->getAuthor(); ?></div>
         <div class="boxDate"><?= $comment->getDate(); ?> </div>
         <div class="boxMsg"><?= $comment->getContent(); ?></div>
-
       </div>
+      <form method="post" action="<?= HtmlHelper::getAction('signalComment','Comment')?>">
+        <input type="hidden" name="id" value="<?= $comment->getId(); ?>" />
+        <input type="hidden" name="nbSignal" value="<?= $comment->getSignalement(); ?>"/>
+        <div class="boxMsg"><?= $comment->getSignalement(); ?></div>
+        <button type="submit" name="signaler">Signaler</button>
+      </form>
     <?php } ?>
   <?php endforeach; ?>
   </div>

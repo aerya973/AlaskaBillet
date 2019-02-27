@@ -6,14 +6,13 @@ class HtmlHelper
   {
     $config = new Config();
     // var_dump(URL);
-    // return $config->rootPath.$controller.'/'.$action;
-    return $config->rootPath.'index.php?url='.$controller.'/'.$action;
+    return $config->rootPath.$controller.'/'.$action;
   }
 
   public static function getActionId($action, $controller, $id)
   {
     $config = new Config();
-    return $config->rootPath.'index.php?url='.$controller.'/'.$action.'&id='.$id;
+    return $config->rootPath.$controller.'/'.$action.'/'.$id;
   }
 
 }

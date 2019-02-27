@@ -17,13 +17,13 @@
           <td>
             <div class="boxSignal">
               <p class="NbSignal"><?= $comment->getSignalement(); ?></p>
-              <button class="deleteBtn" data-id="<?= $comment->getId()?>" >Supprimer</button>
+              <button class="deleteBtn" data-id="<?= $comment->getId(); ?>" >Supprimer</button>
             <div>
           </td>
         </tr>
         <?php endforeach; ?>
 
-        <div id="myModal" class="modal">
+        <div id="myModal" class="modal">=
           <div class="modal-content">
             <span class="close" id="close">&times;</span>
             <form action="<?= HtmlHelper::getAction('deleteComment', 'Comment'); ?>" method="post">
