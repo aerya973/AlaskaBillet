@@ -7,19 +7,22 @@ class View
   private $_t;
   protected $_config;
 
-  public function __construct($action = null)
-  {
+  public function __construct($action = null){
+    $this->Loadconfig();
     $this->_file = 'view/view'.$action.'.php';
   }
 
+  public function Loadconfig(){
+    $this->_config = new Config();
+  }
+
   // GENERE ET AFFICHE LA VUE
-  public function generate($data)
-  {
+  public function generate($data){
     //PARTIE SPECIFIQUE DE LA VUE
     $content = $this->generateFile($this->_file, $data);
-    //TEMPLATE
+
     global $currentController;
-    $view = $this->generateFile('view/template.php', array('_t' => $this->_t, 'content' => $content, 'alert' => $currentController->_alert));
+    $view = $this->generateFile('view/template.php', array('_t' => $this->_t, 'content' => $content, 'alert' => $currentController->_alert, 'imgPath' => $this->_config->imgPath));
     echo $view;
   }
   //GENERE UN FICHIER VUE, RENVOI RESULTAT PRODUIT

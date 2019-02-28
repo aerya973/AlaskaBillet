@@ -16,12 +16,12 @@ class ControllerBase {
   public function Loadconfig(){
     $this->_config = new Config();
   }
-
-  public function verifyAdmin(){
-    return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
-  }
   
   public function Alert($message, $alert){
     $this->_alert = new Alert($message, $alert);
+  }
+
+  public function verifyAdmin(){
+    return isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null;
   }
 }

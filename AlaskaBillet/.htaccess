@@ -11,3 +11,4 @@ RewriteCond %{REQUEST_FILENAME} !-l
 
 RewriteRule ^(.*)/(.*)/([0-9]*)$ index.php?url=$1/$2&id=$3 [QSA,L]
 RewriteRule ^(.*/[a-zA-Z]+)$ index.php?url=$1 [QSA,L]
+RewriteRule ^$ index.php [QSA,L]

@@ -5,7 +5,7 @@
 <div style="overflow-x:auto;">
   <table>
     <thead>
-      <tr class="titleAdmin">
+      <tr class="">
         <th>Titre</th>
         <th>Contenu</th>
         <th>Date</th>
@@ -33,8 +33,7 @@
             <span class="close">&times;</span>
             <form action="<?= HtmlHelper::getAction('deleteArticle', 'Admin' );?>" method="post">
               <input type="hidden" name="id" id="id">
-              <p><?= $article->getId();?></p>
-              <p>Voulez-vous supprimer cet article ? </p>
+              <p class="deleteMsg">Voulez-vous supprimer cet article ? </p>
               <button name="deletePost" class="deleteBouton">supprimer</button>
             </form>
           </div>

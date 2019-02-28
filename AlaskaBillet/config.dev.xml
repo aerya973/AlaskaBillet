@@ -1,5 +1,6 @@
 <config>
   <rootPath>http://localhost/AlaskaBillet/</rootPath>
+  <imgPath>http://localhost/AlaskaBillet/assets/</imgPath>
   <dataBase>
     <userName>root</userName>
     <password>Coucou les Amis Dev!695.</password>

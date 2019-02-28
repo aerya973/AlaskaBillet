@@ -5,7 +5,6 @@ class HtmlHelper
   public static function getAction($action, $controller)
   {
     $config = new Config();
-    // var_dump(URL);
     return $config->rootPath.$controller.'/'.$action;
   }
 

@@ -7,6 +7,7 @@ class Config
   public $rootPath;
   private $userName;
   private $password;
+  public $imgPath;
 
 
   public function __construct()
@@ -28,6 +29,7 @@ class Config
     $this->rootPath = (string)$xml->rootPath;
     $this->userName = (string)$xml->userName;
     $this->password = (string)$xml->password;
+    $this->imgPath = (string)$xml->imgPath;
     $this->environnement= (string)$xml->environnement;
 
         //retourne un simplexml_element = Objet

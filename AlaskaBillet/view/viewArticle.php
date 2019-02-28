@@ -33,8 +33,11 @@ foreach ($articles as $article): ?>
       <form method="post" action="<?= HtmlHelper::getAction('signalComment','Comment')?>">
         <input type="hidden" name="id" value="<?= $comment->getId(); ?>" />
         <input type="hidden" name="nbSignal" value="<?= $comment->getSignalement(); ?>"/>
-        <div class="boxMsg"><?= $comment->getSignalement(); ?></div>
-        <button type="submit" name="signaler">Signaler</button>
+        <div class="boxMsg">
+          <?= $comment->getSignalement(); ?>
+          <img src="<?= $imgPath?>warning.png" alt="signaler commentaire" class="signaler">
+          <button type="submit" name="signaler">Signaler</button>
+        </div>
       </form>
     <?php } ?>
   <?php endforeach; ?>
