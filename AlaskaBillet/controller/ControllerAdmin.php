@@ -151,36 +151,43 @@ class ControllerAdmin extends ControllerBase
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
             if (isset($param['addSubmit'])) {
-                $check = getimagesize($_FILES["img"]["tmp_name"]);
-
-                if ($check !== false) {
-                    $uploadOk = 1;
-                } else {
-                    throw new ErrorMsg("Le fichier n'est pas une image.");
-                    $uploadOk = 0;
-                }
 
                 if (isset($param['title'], $param['content'])) {
                     $title = $param['title'];
                     $content = $param['content'];
-                    $image = $_FILES["img"]["name"];
                     $this->_articleManager = new ArticleManager;
 
-                    if ($this->_articleManager->add($title, $content, $image)) {
-                        $this->Alert("Mise a jour effectuee", 'success');
-                    } else {
-                        throw new ErrorMsg("Erreur.");
-                    }
-                }
-            }
+                    if ($_FILES["img"]["size"] > 0) {
+                        $check = getimagesize($_FILES["img"]["tmp_name"]);
+                        if ($check !== false) {
+                            $uploadOk = 1;
+                        } else {
+                            throw new ErrorMsg("Le fichier n'est pas une image");
+                            $uploadOk = 0;
+                        }
+                        $image = $_FILES["img"]["name"];
 
-            if ($uploadOk == 0) {
-                throw new ErrorMsg("Désolé, votre fichier n'a pas été téléchargé.");
-            } else {
-                if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-                    $this->Alert("Votre fichier " . basename($_FILES["img"]["name"]) . " a été téléchargé.", 'success');
-                } else {
-                    throw new ErrorMsg(" Désolé, une erreur s'est produite lors de l'envoi de votre fichier.", 'success');
+                        if (isset($image)) {
+                            $this->_articleManager->add($title, $content, $image);
+                        }
+
+                        if ($uploadOk == 0) {
+                            throw new ErrorMsg("Désolé, votre fichier n'a pas été téléchargé.");
+                        } else {
+                            if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
+                                $this->Alert("Votre fichier " . basename($_FILES["img"]["name"]) . " a été téléchargé.", 'success');
+                            } else {
+                                throw new ErrorMsg(" Désolé, une erreur s'est produite lors de l'envoi de votre fichier.", 'success');
+                            }
+                        }
+
+                    } else {
+                        if ($this->_articleManager->add($title, $content, null)) {
+                            $this->Alert("Mise a jour effectuee", 'success');
+                        } else {
+                            throw new ErrorMsg("Erreur.");
+                        }
+                    }
                 }
             }
             $this->ShowArticles();

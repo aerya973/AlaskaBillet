@@ -1,8 +1,17 @@
+<?php
+$this->_t = "Admin"; 
+?>
 
-<form action="<?= HtmlHelper::getAction('Authentification', 'Admin') ?>" method="post">
-  <label for="user_name"></label>
-  <input type="username" id="user_name" name="user_name" placeholder="username">
-  <label for="user_pass"></label>
-  <input type="password" id="user_pass" name="user_pass" placeholder="*****">
-  <button type="submit" value="submit"> Se connecter </button>
-</form>
+<h1>Espace Administrateur</h1>
+
+<div class="formLogin">
+  <form action="<?=HtmlHelper::getAction('Authentification', 'Admin')?>" method="post">
+   <div class="inputUser">
+      <input type="username" id="user_name" name="user_name" placeholder="username">
+    </div>
+    <div class="inputPass">
+      <input type="password" id="user_pass" name="user_pass" placeholder="*****">
+    </div>
+    <button type="submit" value="submit" class="loginBtn"> Se connecter </button>
+  </form>
+</div>

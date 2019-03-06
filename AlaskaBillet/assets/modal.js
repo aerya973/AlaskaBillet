@@ -1,10 +1,11 @@
-// MODAL DELETE BUTTON
+
 var span = document.getElementsByClassName('close');
 var btn = document.getElementsByClassName('deleteBtn');
 var modal = document.getElementById('myModal');
 var alertMsg = document.getElementById('alert');
 var spanAlert = document.getElementsByClassName('closeAlert');
 
+// MODAL DELETE BUTTON
 
 for (var i = 0; i < btn.length; i++) {
   var thisBtn = btn[i];
@@ -44,10 +45,6 @@ window.addEventListener('click', (event) => {
         alertMsg.style.display = 'none';
     }
 });
-
-
-
-
 
 
 

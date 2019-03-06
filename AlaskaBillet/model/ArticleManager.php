@@ -20,8 +20,13 @@ class ArticleManager extends ModelManager
 
     public function add($title, $content, $img)
     {
-        $req = $this->getBdd()->prepare('INSERT INTO ' . $this->_table . ' (title, content, img, date) VALUES (?, ?, ?, NOW())');
-        return $req->execute(array($title, $content, $img));
+        if ($img == null) {
+            $req = $this->getBdd()->prepare('INSERT INTO ' . $this->_table . ' (title, content, date) VALUES (?, ?, NOW())');
+            return $req->execute(array($title, $content));
+        } else {
+            $req = $this->getBdd()->prepare('INSERT INTO ' . $this->_table . ' (title, content, img, date) VALUES (?, ?, ?, NOW())');
+            return $req->execute(array($title, $content, $img));
+        }
     }
 
     public function delete($id)
