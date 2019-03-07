@@ -1,3 +1,7 @@
+<?php
+$this->_t = "Espace Administrateur";
+?>
+<h1>Espace Administrateur</h1>
 <div class="addArticle">
 <button class="addButton1"><a href="<?=HtmlHelper::getAction('ShowAdd', 'Admin')?>">Ajouter un article</a></button>
 <button class="commButton"><a href="<?=HtmlHelper::getAction('ShowComments', 'Comment')?>">Commentaires</a></button>

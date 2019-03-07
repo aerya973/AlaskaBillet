@@ -1,3 +1,8 @@
+<?php
+$this->_t = "Commentaires";
+?>
+<h1>Espace Commentaires</h1>
+
 <div style="overflow-x:auto;">
   <table class="tableComment">
     <thead>

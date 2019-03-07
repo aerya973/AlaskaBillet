@@ -12,9 +12,9 @@
       echo $view->generateFile('view/alert.php', array('alert' => $alert));
     }?>
     <?=$content?>
-    <footer>
-      <?php require 'include/footer.php'?>
-    </footer>
-    <script src="<?=$config->rootPath;?>/assets/modal.js"></script>
   </body>
+  <footer>
+    <?php require 'include/footer.php'?>
+  </footer>
+  <script src="<?=$config->rootPath;?>/assets/modal.js"></script>
 </html>

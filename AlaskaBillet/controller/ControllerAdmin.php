@@ -18,7 +18,7 @@ class ControllerAdmin extends ControllerBase
             $this->ShowArticles();
         } else {
             $this->_view = new View('Admin');
-            $this->_view->generate(array());
+            $this->_view->generate(array('imgPath' => $this->_config->rootPath . 'assets/'));
         }
     }
 
@@ -88,7 +88,7 @@ class ControllerAdmin extends ControllerBase
 
                 if (isset($param['title'], $param['content'])) {
                     $id = $param['id'];
-                    $title = $param['title'];
+                    $title = htmlspecialchars($param['title']);
                     $content = $param['content'];
                     $this->_articleManager = new ArticleManager;
 
@@ -153,7 +153,7 @@ class ControllerAdmin extends ControllerBase
             if (isset($param['addSubmit'])) {
 
                 if (isset($param['title'], $param['content'])) {
-                    $title = $param['title'];
+                    $title = htmlspecialchars($param['title']);
                     $content = $param['content'];
                     $this->_articleManager = new ArticleManager;
 
