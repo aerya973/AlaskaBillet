@@ -20,6 +20,7 @@ abstract class ModelManager
 
     public function getAll()
     {
+        // SELECT ALL FROM ARTICLE RETURN ARRAY OBJECT IF DATA FETCH
         $var = [];
         $req = $this->getBdd()->prepare('SELECT * FROM ' . $this->_table . ' ORDER BY id ASC');
         $req->execute();

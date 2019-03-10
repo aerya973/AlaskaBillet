@@ -3,7 +3,7 @@ $this->_t = "Admin";
 ?>
 
 <h1>Espace Administrateur</h1>
-
+<!-- GET ACTION AUTHENTIFICATION IN CONTROLLERADMIN -->
 <div class="formLogin">
   <form action="<?=HtmlHelper::getAction('Authentification', 'Admin')?>" method="post">
    <div class="inputUser">

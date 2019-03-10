@@ -1,5 +1,5 @@
 <?php
-
+// Get file Routeur.php and call method routeReq();
 require_once('Framework/Router.php');
 
 global $environnement;

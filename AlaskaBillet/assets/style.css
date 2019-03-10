@@ -135,38 +135,41 @@ article {
 /* ACCUEIL */
 
 
-
 #container {
-  height: 400px;
-  width: 100%;
+  height: auto;
+  max-width: 100%;
   position: relative;
 }
 #image {
-  position: absolute;
+  /* position: relative; 
   left: 0;
-  top: 0;
-  height: 179%;
+  top: 0;  */
+  object-fit: contain;
 }
+
+#img-accueil {
+  position:relative;
+  z-index: initial;
+  height: 100%;
+}
+
 #text {
-  z-index: 100;
-  position: absolute;
   color: white;
   font-size: 24px;
   font-weight: bold;
-  left: 150px;
-  top: 350px;
 }
 
-
 .boxAnimation {
-  padding-left: 25%;
   font-size: 6em;
   font-weight: 800;
   font-family: "Moon Flower";
-  padding-top: 17%;
   color: white;
   text-shadow: 2px 2.5px 4px black;
   opacity: 3;
+  position: absolute;
+  z-index: 3;
+  left: 25%;
+  top: 40%;
 }
 
 .animationTexte {

@@ -5,6 +5,7 @@ tinymce.init({
   mode : "exact",
   elements : "mytextarea",
   nowrap : true,
-  browser_spellcheck: true
+  browser_spellcheck: true,
+  plugins: "autoresize"
 });
 </script>

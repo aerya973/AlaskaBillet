@@ -1,7 +1,6 @@
-<div class="bordure"></div>
 <h1><a href="<?=HtmlHelper::getAction('Articles', 'Article')?>" >Billet simple pour l'Alaska</a></h1>
-<?php $this->_t = "Chapitres";?>
-<div id="flexbox-wrapper">
+  <div id="flexbox-wrapper">
+  <?php $this->_t = "Chapitres";?>
   <!-- left column -->
   <div class="leftcolumn">
     <!-- articles -->

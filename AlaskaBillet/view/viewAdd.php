@@ -4,6 +4,7 @@ $this->_t = "Ajout Article";
 
 <div class="containerForm">
   <h4>Ajouter un Article</h4>
+  <!-- CALL METHOD ADD ARTICLE FROM ADMIN CONTROLLER -->
   <form action="<?=HtmlHelper::getAction('AddArticle', 'Admin')?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="date"/>
     <div>

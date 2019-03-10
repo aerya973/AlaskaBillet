@@ -51,6 +51,7 @@ class ControllerComment extends ControllerBase
 
                 if ($this->_commentManager->add($author, $content, $articleId)) {
                     header('Location: ' . $this->_config->rootPath . 'Article/Articles');
+                // ALERTE A INTEGRER SUR LA PAGE Article/Articles QUI NE FONCTIONNE PAS
                     // $this->Alert('Les articles ont bien ete charges', 'success');
                 } else {
                     throw new ErrorMsg("Une erreur est survenue lors de l'envoi du commentaire.");
@@ -59,6 +60,7 @@ class ControllerComment extends ControllerBase
                 throw new ErrorMsg("Veuillez remplir les tous les champs");
             }
         }
+        // header('Location: ' . $this->_config->rootPath . 'Article/Articles');
     }
 
     public function signalComment($param)
@@ -69,6 +71,7 @@ class ControllerComment extends ControllerBase
             $this->_commentManager = new CommentManager();
             if ($this->_commentManager->update($nbSignal, $id)) {
                 header('Location: ' . $this->_config->rootPath . 'Article/Articles');
+                $this->Alert('Les articles ont bien ete charges', 'success');
             } else {
                 throw new ErrorMsg('Erreur lors du signalement du commentaire');
             }

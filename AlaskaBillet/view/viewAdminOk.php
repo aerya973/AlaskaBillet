@@ -3,7 +3,9 @@ $this->_t = "Espace Administrateur";
 ?>
 <h1>Espace Administrateur</h1>
 <div class="addArticle">
+<!-- ADD POSTS -->
 <button class="addButton1"><a href="<?=HtmlHelper::getAction('ShowAdd', 'Admin')?>">Ajouter un article</a></button>
+<!-- COMMENT MANAGER -->
 <button class="commButton"><a href="<?=HtmlHelper::getAction('ShowComments', 'Comment')?>">Commentaires</a></button>
 </div>
 <div style="overflow-x:auto;">
@@ -25,8 +27,9 @@ $this->_t = "Espace Administrateur";
           <td><?=$article->getDate();?></td>
           <td><img src="<?=$imgPath . $article->getImg();?>" /></td>
           <td>
-
+          <!-- EDIT POSTS -->
           <button class="editBtn"><a href="<?=HtmlHelper::getActionId('ShowArticle', 'Admin', $article->getId());?>">Editer</a></button>
+          <!-- DELETE BUTTON OPENING MODAL -->
           <button class="deleteBtn" data-id="<?=$article->getId();?>">Supprimer</button>
           </td>
         </tr>
@@ -35,6 +38,7 @@ $this->_t = "Espace Administrateur";
         <div id="myModal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
+            <!-- DELETE COMMENT -->
             <form action="<?=HtmlHelper::getAction('deleteArticle', 'Admin');?>" method="post">
               <input type="hidden" name="id" id="id">
               <p class="deleteMsg">Voulez-vous supprimer cet article ? </p>

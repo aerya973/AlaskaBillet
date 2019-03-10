@@ -11,7 +11,7 @@ class ControllerAdmin extends ControllerBase
         $this->Loadconfig();
     }
 
-    //AUTENTIFICATION
+    //METHOD GENERATE AUTHENTIFICATION VIEW 
     public function Admin()
     {
         if ($this->verifyAdmin()) {
@@ -21,21 +21,23 @@ class ControllerAdmin extends ControllerBase
             $this->_view->generate(array('imgPath' => $this->_config->rootPath . 'assets/'));
         }
     }
-
+    // GET PARAM FROM FORM CALL ADMIN MANAGER 
     public function Authentification($param)
     {
         $this->_adminManager = new AdminManager;
+        // ADMIN EQUAL TO METHOD LOGIN RETURN TRUE/FALSE 
         $admin = $this->Login();
         return $admin;
     }
-
+    // VERIFY IN DATABASE IF ADMIN MATCH
     public function Login()
     {
         if ((!empty($_POST['user_name'])) && (!empty($_POST['user_pass']))) {
             $user = $_POST['user_name'];
             $pass = $_POST['user_pass'];
+            // GET INFO FROM FORM AND CALL MANAGER METHOD isAdmin()
             $admin = $this->_adminManager->isAdmin($user, $pass);
-
+            // IF ADMIN IS DIFFERENT FROM FALSE OPEN SESSION $admin AND CALL METHOD ShowArticles() ELSE ERROR MSG
             if ($admin != false) {
                 $_SESSION['user'] = $admin;
                 header('Location: ' . $this->_config->rootPath . 'Admin/ShowArticles');
@@ -53,9 +55,11 @@ class ControllerAdmin extends ControllerBase
     public function ShowArticles()
     {
         if ($this->verifyAdmin()) {
+            // IF ADMIN, GET ALL ARTICLES FROM MODELMANAGER METHOD GET ALL
             $this->_articleManager = new ArticleManager;
             $listeArticle = $this->_articleManager->getAll();
             $this->_view = new View('AdminOk');
+            // GENERATE ADMINOK VIEW WITH ALL ARTICLES 
             $this->_view->generate(array('listeArticle' => $listeArticle, 'imgPath' => $this->_config->rootPath . 'assets/'));
         } else {
             header('Location: ' . $this->_config->rootPath . 'Admin/Admin');
@@ -132,6 +136,7 @@ class ControllerAdmin extends ControllerBase
         }
     }
 
+    // CALL NEW VIEW ADD FROM VIEWADMINOK
     public function ShowAdd()
     {
         if ($this->verifyAdmin()) {
@@ -141,22 +146,26 @@ class ControllerAdmin extends ControllerBase
             header('Location: ' . $this->_config->rootPath . 'Admin/Admin');
         }
     }
-
+    // GET PARAM FROM ShowAdd FORM 
     public function AddArticle($param)
     {
         if ($this->verifyAdmin()) {
+            // TARGET DIRECTORY TO UPLOAD TARGET FILE
             $target_dir = "assets/";
+            // TARGET DIRECTORY + NAME OF FILE FROM FORM
             $target_file = $target_dir . basename($_FILES["img"]["name"]);
             $uploadOk = 1;
+            // GET IMAGE TYPE
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
             if (isset($param['addSubmit'])) {
 
                 if (isset($param['title'], $param['content'])) {
+                    // HERE WE ADD TITLE AND CONTENT FROM FORM
                     $title = htmlspecialchars($param['title']);
                     $content = $param['content'];
                     $this->_articleManager = new ArticleManager;
-
+                    // IF IMAGE SIZE IS GREATER THAN ZERO WE GET IMG SIZE INFO RETURN TRUE OR FALSE
                     if ($_FILES["img"]["size"] > 0) {
                         $check = getimagesize($_FILES["img"]["tmp_name"]);
                         if ($check !== false) {
@@ -166,7 +175,7 @@ class ControllerAdmin extends ControllerBase
                             $uploadOk = 0;
                         }
                         $image = $_FILES["img"]["name"];
-
+                        // IF ISSET IMG CALL METHOD WITH TREE PARAMETER (TITLE,CONTENT,IMAGE)
                         if (isset($image)) {
                             $this->_articleManager->add($title, $content, $image);
                         }
@@ -180,7 +189,7 @@ class ControllerAdmin extends ControllerBase
                                 throw new ErrorMsg(" Désolé, une erreur s'est produite lors de l'envoi de votre fichier.", 'success');
                             }
                         }
-
+                    // IF IMG IS SMALLER THAN ZERO CALL METHOD ADD WITH TREE PARAMETER BUT IMG NULL
                     } else {
                         if ($this->_articleManager->add($title, $content, null)) {
                             $this->Alert("Mise a jour effectuee", 'success');
