@@ -18,8 +18,6 @@ class ControllerAdmin extends ControllerBase
         } else {
             $this->_view = new View('Admin');
             $this->_view->generate(array('imgPath' => $this->_config->rootPath . 'assets/'));
-            var_dump($_SESSION);
-            var_dump($this->verifyAdmin());
         }
     }
     // GET PARAM FROM FORM CALL ADMIN MANAGER 
