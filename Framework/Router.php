@@ -1,7 +1,5 @@
 <?php
-include_once('model/Model.php');
-include_once('model/Admin.php');
-session_start();
+
 require_once 'view/View.php';
 require_once 'Exception.php';
 
@@ -24,7 +22,12 @@ class Router
                     require_once ('controller/' . $class . '.php');
                 }
             });
+
             $this->_error = new ControllerError();
+            $this->_ctrlBase = new ControllerBase();
+            if (!($this->_ctrlBase->verifyAdmin())){
+                session_start();
+            }
 
             $url = '';
             global $currentController;

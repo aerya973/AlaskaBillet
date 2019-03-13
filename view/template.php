@@ -10,18 +10,7 @@
     
   <nav role="navigation">
   <div id="menuToggle">
-    <!--
-    A fake / hidden checkbox is used as click reciever,
-    so you can use the :checked selector on it.
-    -->
     <input type="checkbox" />
-    
-    <!--
-    Some spans to act as a hamburger.
-    
-    They are acting like a real hamburger,
-    not that McDonalds stuff.
-    -->
     <div class="burgerIcon">
       <span></span>
       <span></span>
@@ -34,9 +23,7 @@
       <a href="<?=HtmlHelper::getAction('Admin', 'Admin')?>"><li>Admin</li></a>
       <?php
 if (isset($_SESSION['user']) && $_SESSION['user'] instanceof Admin && $_SESSION['user']->getId() != null) {?>
-      <a href="<?=HtmlHelper::getAction('logOut', 'Admin')?>"><li>Déconnexion
-
-</li>
+      <a href="<?=HtmlHelper::getAction('logOut', 'Admin')?>"><li>Déconnexion</li></a>
   <?php }?>
     </ul>
   </div>

@@ -1,5 +1,4 @@
 <?php
-require_once 'controller/ControllerBase.php';
 
 class ControllerArticle extends ControllerBase
 {
