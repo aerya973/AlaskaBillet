@@ -1,10 +1,9 @@
 <?php
 require_once 'Framework/Config.php';
 require_once 'Framework/Alert.php';
-// Modele pour les controllers
+
 class ControllerBase
 {
-
     protected $_config;
     public $_alert;
 

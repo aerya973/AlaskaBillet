@@ -1,5 +1,4 @@
 <?php
-// RECUPERE LES DONNEES DE FACON SECURISEE
 class Article extends Model
 {
     public $_id;
@@ -39,10 +38,7 @@ class Article extends Model
 
     public function setImg($img)
     {
-        // if(file_exists($img))
-        // {
         $this->_img = $img;
-        // }
     }
 
     //GETTER

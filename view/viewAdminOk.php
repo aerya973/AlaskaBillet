@@ -8,34 +8,41 @@ $this->_t = "Espace Administrateur";
 <!-- COMMENT MANAGER -->
 <button class="commButton"><a href="<?=HtmlHelper::getAction('ShowComments', 'Comment')?>">Commentaires</a></button>
 </div>
-<div style="overflow-x:auto;">
-  <table>
-    <thead>
-      <tr class="">
-        <th>Titre</th>
-        <th>Contenu</th>
-        <th>Date</th>
-        <th>Image</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($listeArticle as $article): ?>
-        <tr class="manageArticle">
-          <td class="title"><?=$article->getTitle();?></td>
-          <td><?=$article->getContent();?></td>
-          <td><?=$article->getDate();?></td>
-          <td><img src="<?=$imgPath . $article->getImg();?>" /></td>
-          <td>
-          <!-- EDIT POSTS -->
-          <button class="editBtn"><a href="<?=HtmlHelper::getActionId('ShowArticle', 'Admin', $article->getId());?>">Editer</a></button>
-          <!-- DELETE BUTTON OPENING MODAL -->
-          <button class="deleteBtn" data-id="<?=$article->getId();?>">Supprimer</button>
-          </td>
-        </tr>
-        <?php endforeach;?>
 
-        <div id="myModal" class="modal">
+
+
+<div class="Table">
+
+  <div class="Table-row Table-header">
+    <div class="Table-row-item">Titre</div>
+    <div class="Table-row-item">Contenu</div>
+    <div class="Table-row-item">Date</div>
+    <div class="Table-row-item hiddenPic">Image</div>
+    <div class="Table-row-item">Action</div>
+  </div>
+
+  <?php foreach ($listeArticle as $article): ?>
+
+
+
+  <div class="Table-row columns">
+    <div class="Table-row-item"><?=$article->getTitle();?></div>
+    <div class="Table-row-item"><?=$article->getContent();?></div>
+    <div class="Table-row-item"><?=$article->getDate();?></div>
+    <div class="Table-row-item hiddenPic"><img src="<?=$imgPath . $article->getImg();?>"/></div>
+    <div class="Table-row-item" >
+
+      <div><button class="editBtn"><a href="<?=HtmlHelper::getActionId('ShowArticle', 'Admin', $article->getId());?>">Editer</a></button></div>
+          <!-- DELETE BUTTON OPENING MODAL -->
+      <div><button class="deleteBtn" data-id="<?=$article->getId();?>">Supprimer</button></div>
+    </div>
+    </div>
+  <?php endforeach;?>
+
+
+</div>
+
+  <div id="myModal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
             <!-- DELETE COMMENT -->
@@ -46,7 +53,3 @@ $this->_t = "Espace Administrateur";
             </form>
           </div>
         </div>
-
-    </tbody>
-  </table>
-</div>

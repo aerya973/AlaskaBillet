@@ -24,13 +24,12 @@ class Config
 
     public function readXml()
     {
+        //CONVERTS XML FILE TO AN OBJECT
         $xml = simplexml_load_file($this->file);
         $this->rootPath = (string) $xml->rootPath;
         $this->userName = (string) $xml->userName;
         $this->password = (string) $xml->password;
         $this->imgPath = (string) $xml->imgPath;
         $this->environnement = (string) $xml->environnement;
-
-        //retourne un simplexml_element = Objet
     }
 }

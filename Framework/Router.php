@@ -1,5 +1,7 @@
 <?php
-// Get View.php and Exception.php
+include_once('model/Model.php');
+include_once('model/Admin.php');
+session_start();
 require_once 'view/View.php';
 require_once 'Exception.php';
 
@@ -13,8 +15,6 @@ class Router
     public function routeReq()
     {
         try {
-
-            //AUTLOAD CLASSES
             spl_autoload_register(function ($class) {
                 if (file_exists('model/' . $class . '.php')) {
                     require_once ('model/' . $class . '.php');
@@ -24,14 +24,13 @@ class Router
                     require_once ('controller/' . $class . '.php');
                 }
             });
-            //IF WE CALL $this->_error WE CALL CONTROLLER ERROR
             $this->_error = new ControllerError();
 
             $url = '';
             global $currentController;
 
-            //IF ISSET URL, TAKE URL AND CUT 
             if (isset($_GET['url'])) {
+                //SPLIT URL INTO SEGMENTS /-> DELIMITER FILTER DELETE ALL EXCEPT LETTER, NUMBER AND SPECIAL CHAR
                 $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
                 // CONTROLLER IS FIRST PARAMETER
                 $controller = ucfirst(mb_strtolower($url[0]));
@@ -39,10 +38,9 @@ class Router
                 $action = ucfirst(mb_strtolower($url[1]));
                 $controllerClass = "Controller" . $controller;
                 $controllerFile = 'controller/' . $controllerClass . ".php";
-                // IF CONTROLLERFILE EXISTS $this->_ctrl REPRESENT CONTROLLERCLASS
+                
                 if (file_exists($controllerFile)) {
                     $this->_ctrl = new $controllerClass();
-                    // WE DEFINE HERE THE CURRENT CONTROLLER
                     $currentController = $this->_ctrl;
                     // IF THERE IS CONTROLLER AND ACTION GET HTTP PARAMETER
                     if (method_exists($this->_ctrl, $action)) {

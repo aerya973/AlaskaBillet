@@ -24,7 +24,7 @@
         </form>
       </div>
       <!-- Comments -->
-      <div>
+      <div class="listComm">
         <?php foreach ($comments as $comment): if ($comment->getArticleId() === $article->getId()) {?>
         <div class="comments">
           <div class="authorDate">

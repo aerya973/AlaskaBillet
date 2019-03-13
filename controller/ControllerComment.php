@@ -1,8 +1,6 @@
 <?php
-session_start();
 require_once 'controller/ControllerBase.php';
 
-// "Colle entre la vue et modele"
 class ControllerComment extends ControllerBase
 {
 
@@ -21,7 +19,7 @@ class ControllerComment extends ControllerBase
             $this->_view = new View('Comment');
             $this->_view->generate(array('listeComm' => $listeComm));
         } else {
-            throw new ErrorMsg('Vous n\'etes pas Admin');
+            throw new ErrorMsg('Vous n\'êtes pas Admin');
         }
     }
 
@@ -31,7 +29,7 @@ class ControllerComment extends ControllerBase
             if (isset($param['deleteComm'])) {
                 $this->_commentManager = new CommentManager();
                 if ($this->_commentManager->delete($param['id'])) {
-                    $this->Alert('Le commentaire a bien ete supprime', 'success');
+                    $this->Alert('Le commentaire a bien été supprimé', 'success');
                 } else {
                     throw new ErrorMsg("Erreur lors de la suppression du commentaire");
                 }
@@ -50,17 +48,16 @@ class ControllerComment extends ControllerBase
                 $this->_commentManager = new CommentManager();
 
                 if ($this->_commentManager->add($author, $content, $articleId)) {
-                    header('Location: ' . $this->_config->rootPath . 'Article/Articles');
-                // ALERTE A INTEGRER SUR LA PAGE Article/Articles QUI NE FONCTIONNE PAS
-                    // $this->Alert('Les articles ont bien ete charges', 'success');
+                    $controllerArticle = new ControllerArticle();
+                    $this->Alert('Les commentaires ont bien été chargés', 'success');
+                    $controllerArticle->Articles();
                 } else {
                     throw new ErrorMsg("Une erreur est survenue lors de l'envoi du commentaire.");
                 }
             } else {
-                throw new ErrorMsg("Veuillez remplir les tous les champs");
+                throw new ErrorMsg("Veuillez remplir tous les champs");
             }
         }
-        // header('Location: ' . $this->_config->rootPath . 'Article/Articles');
     }
 
     public function signalComment($param)
@@ -70,8 +67,9 @@ class ControllerComment extends ControllerBase
             $nbSignal = $param['nbSignal'] + 1;
             $this->_commentManager = new CommentManager();
             if ($this->_commentManager->update($nbSignal, $id)) {
-                header('Location: ' . $this->_config->rootPath . 'Article/Articles');
-                $this->Alert('Les articles ont bien ete charges', 'success');
+                $controllerArticle = new ControllerArticle();
+                $this->Alert('Les commentaires ont bien été signalés', 'success');
+                $controllerArticle->Articles();
             } else {
                 throw new ErrorMsg('Erreur lors du signalement du commentaire');
             }

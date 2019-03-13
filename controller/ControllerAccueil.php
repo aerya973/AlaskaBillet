@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'controller/ControllerBase.php';
 
 class ControllerAccueil extends ControllerBase

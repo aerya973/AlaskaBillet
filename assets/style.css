@@ -12,6 +12,10 @@ img {
   width: 100%;
 }
 
+header {
+  width: 100%;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -33,10 +37,14 @@ li a {
   font-size: 1em;
 }
 
-/* Menu */
+/* MENU */
 
 li a:hover {
   background-color: #111;
+}
+
+nav{
+  display:none;
 }
 
 body {
@@ -68,12 +76,13 @@ footer {
   text-align: right;
 }
 
-/*Table Admin*/
+/* TABLE */
 
 table {
   background-color: white;
   margin-right: 5%;
   margin-left: 5%;
+  width: 90%;
 }
 
 td {
@@ -129,6 +138,8 @@ article {
 }
 
 
+
+
 /* CLASSES */
 
 
@@ -136,21 +147,22 @@ article {
 
 
 #container {
-  height: auto;
+  height: 100%;
   max-width: 100%;
-  position: relative;
 }
+
 #image {
-  /* position: relative; 
-  left: 0;
-  top: 0;  */
-  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  object-fit: cover;
 }
 
 #img-accueil {
-  position:relative;
+  position: relative;
   z-index: initial;
   height: 100%;
+  width: 100%;
 }
 
 #text {
@@ -210,8 +222,8 @@ article {
     0% {opacity:0;width:0px;}
     20% {opacity:1;width:0px;}
     30% {width:120px;}
-    80% {opacity:1;width: 300px}
-    100% {opacity:0;width:300px;}
+    80% {opacity:1;width: 320px}
+    100% {opacity:0;width:320px;}
 }
 
 
@@ -270,7 +282,7 @@ p.JFtext {
 
 .titreArticle {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   width: 63.8%;
   font-size: 1.1em;
   background-color: white;
@@ -390,7 +402,6 @@ p.JFtext {
 .signalCom {
   margin-top: 12%;
   margin-bottom: 18%;
-  /* padding: 4px; */
   margin-left: 10%;
   background-color: #e95447;
   -moz-border-radius: 6px;
@@ -400,8 +411,6 @@ p.JFtext {
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family: Arial;
-  /* font-size: 15px; */
   font-weight: bold;
   padding: 5px 7px 5px 5px;
   text-decoration: none;
@@ -446,9 +455,7 @@ p.JFtext {
 	background-color: #fc8d83;
 }
 
-/*******************
- MODAL 
- ******************/
+/* MODAL */
 
 .modal {
   display: none;
@@ -568,7 +575,7 @@ p.JFtext {
   padding: 12px 24px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #47ad95;
-  margin-left: 5%;
+  margin-left: 1.5%;
 }
 
 
@@ -658,19 +665,7 @@ p.JFtext {
 /* VIEW ADD */
 
 .addButton2 {
-  -moz-box-shadow: inset 0px 1px 0px 0px #befac5;
-  -webkit-box-shadow: inset 0px 1px 0px 0px #befac5;
-  box-shadow: inset 0px 1px 0px 0px #befac5;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #62e356), color-stop(1, #6ccc54));
-  background: -moz-linear-gradient(top, #62e356 5%, #6ccc54 100%);
-  background: -webkit-linear-gradient(top, #62e356 5%, #6ccc54 100%);
-  background: -o-linear-gradient(top, #62e356 5%, #6ccc54 100%);
-  background: -ms-linear-gradient(top, #62e356 5%, #6ccc54 100%);
-  background: linear-gradient(to bottom, #62e356 5%, #6ccc54 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62e356', endColorstr='#6ccc54',GradientType=0);
-  background-color: aliceblue;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
+  background-color:#76c163;
   border-radius: 6px;
   border: none;
   display: inline-block;
@@ -681,48 +676,29 @@ p.JFtext {
   padding: 12px 24px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #47ad95;
-  margin-bottom: 5px;
-  margin-left: 40%;
   margin-top: 5%;
-  font-size: 1.3em;
-  width: 20%;
-  font-variant: all-small-caps;
 }
 
 .addButton2:hover {
-  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6ccc54), color-stop(1, #62e356));
-	background:-moz-linear-gradient(top, #6ccc54 5%, #62e356 100%);
-	background:-webkit-linear-gradient(top, #6ccc54 5%, #62e356 100%);
-	background:-o-linear-gradient(top, #6ccc54 5%, #62e356 100%);
-	background:-ms-linear-gradient(top, #6ccc54 5%, #62e356 100%);
-	background:linear-gradient(to bottom, #6ccc54 5%, #62e356 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6ccc54', endColorstr='#62e356',GradientType=0);
-  background-color:#6ccc54;
+	background-color:#8fc582;
 }
 
 /* VIEW EDIT */
 
 .modifyBtn {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea));
+  background-color: #599cdb;
   color: #ffffff;
-  font-weight: bold;
+  font-size: 15px;
   padding: 8px 24px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #528ecc;
   border: none;
   border-radius: 5px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  width: 20%;
-  color: white;
-  margin-left: 40%;
+  font-weight: 700;
   margin-top: 5%;
-  font-size: 1.3em;
-  font-variant: all-small-caps;
 }
 
 .modifyBtn:hover{
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #80b5ea), color-stop(1, #bddbfa));
   background-color: #80b5ea;
 }
 
@@ -778,7 +754,6 @@ p.JFtext {
 }
 
 .logout img {
-  /* display: block; */
   padding: 0px 15px;
   width: 25%;
   padding: 0px 17px;
@@ -789,4 +764,60 @@ p.JFtext {
   color: white;
 }
 
-/* Alert */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* VIEW ADMIN OK */
+.Table {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin: 0.5rem;
+  line-height: 1.5;
+  background-color: white;
+  width: 96%;
+  margin-left: 1.5%;
+}
+
+.Table-header {
+  padding: 1%;
+  text-align: center;
+  background-color: #eeeeee;
+}
+
+.Table-row{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.Table-row:hover{
+  background-color:#f6f6f6;
+}
+
+.columns {
+  text-align: center;
+    height: 249px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 2%;
+    margin-bottom: 2%;
+}
+
+    
+.Table-row-item{
+  flex-grow: 1;
+  width: 100%;
+  }

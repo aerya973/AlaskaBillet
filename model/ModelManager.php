@@ -10,6 +10,7 @@ abstract class ModelManager
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    // PATTERN SINGLETON
     protected function getBdd()
     {
         if (self::$_bdd == null) {

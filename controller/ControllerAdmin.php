@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'controller/ControllerBase.php';
 
 class ControllerAdmin extends ControllerBase
@@ -19,6 +18,8 @@ class ControllerAdmin extends ControllerBase
         } else {
             $this->_view = new View('Admin');
             $this->_view->generate(array('imgPath' => $this->_config->rootPath . 'assets/'));
+            var_dump($_SESSION);
+            var_dump($this->verifyAdmin());
         }
     }
     // GET PARAM FROM FORM CALL ADMIN MANAGER 
@@ -35,7 +36,6 @@ class ControllerAdmin extends ControllerBase
         if ((!empty($_POST['user_name'])) && (!empty($_POST['user_pass']))) {
             $user = $_POST['user_name'];
             $pass = $_POST['user_pass'];
-            // GET INFO FROM FORM AND CALL MANAGER METHOD isAdmin()
             $admin = $this->_adminManager->isAdmin($user, $pass);
             // IF ADMIN IS DIFFERENT FROM FALSE OPEN SESSION $admin AND CALL METHOD ShowArticles() ELSE ERROR MSG
             if ($admin != false) {
@@ -45,7 +45,7 @@ class ControllerAdmin extends ControllerBase
                 throw new ErrorMsg("Le nom d'utilisateur ou le mot de passe n'est pas correct");
             }
         } else {
-            throw new ErrorMsg("Un des champs est vides");
+            throw new ErrorMsg("Un des champs est vide");
         }
     }
 
@@ -123,7 +123,7 @@ class ControllerAdmin extends ControllerBase
                     } else {
 
                         if ($this->_articleManager->edit($param['id'], $title, $content, null)) {
-                            $this->Alert('Le contenu a bien ete edite', 'success');
+                            $this->Alert('Le contenu a bien été édité', 'success');
                         } else {
                             throw new ErrorMsg('Il y a eu un probleme lors de l\'envoi de votre article');
                         }
@@ -186,13 +186,13 @@ class ControllerAdmin extends ControllerBase
                             if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
                                 $this->Alert("Votre fichier " . basename($_FILES["img"]["name"]) . " a été téléchargé.", 'success');
                             } else {
-                                throw new ErrorMsg(" Désolé, une erreur s'est produite lors de l'envoi de votre fichier.", 'success');
+                                throw new ErrorMsg(" Désolé, une erreur s'est produite lors de l'envoi de votre fichier.");
                             }
                         }
                     // IF IMG IS SMALLER THAN ZERO CALL METHOD ADD WITH TREE PARAMETER BUT IMG NULL
                     } else {
                         if ($this->_articleManager->add($title, $content, null)) {
-                            $this->Alert("Mise a jour effectuee", 'success');
+                            $this->Alert("Mise a jour effectuée", 'success');
                         } else {
                             throw new ErrorMsg("Erreur.");
                         }
@@ -212,7 +212,7 @@ class ControllerAdmin extends ControllerBase
                 $this->_articleManager = new ArticleManager;
 
                 if ($this->_articleManager->delete($param['id'])) {
-                    $this->Alert('Mise a jour effectuee', 'success');
+                    $this->Alert('Mise a jour effectuée', 'success');
                 } else {
                     throw new ErrorMsg("Erreur.");
                 }
