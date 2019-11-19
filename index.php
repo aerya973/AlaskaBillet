@@ -2,7 +2,7 @@
 require_once('Framework/Router.php');
 
 global $environnement;
-$environnement = 'dev';
+$environnement = 'prod';
 
 
 $router = new Router();

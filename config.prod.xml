@@ -1,8 +1,9 @@
 <config>
-  <rootPath>http://rbelmonte.sysops.win/PHP/</rootPath>
+  <rootPath>https://r.sysops.win/AlaskaBillet/</rootPath>
+  <assetsPath>https://r.sysops.win/AlaskaBillet/assets/</assetsPath>
   <dataBase>
-    <userName></userName>
-    <password></password>
+    <userName>blog_usr</userName>
+    <password>mon_blog_oc_2019</password>
   </dataBase>
   <environnement>prod</environnement>
 </config>

@@ -6,7 +6,7 @@ abstract class ModelManager
     protected $_obj;
     private static function setBdd()
     {
-        self::$_bdd = new PDO('mysql:host=localhost;dbname=miniblog;charset=utf8', 'root', 'Coucou les Amis Dev!695.');
+        self::$_bdd = new PDO('mysql:host=localhost;dbname=blog_db;charset=utf8', 'blog_usr', 'mon_blog_oc_2019');
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
